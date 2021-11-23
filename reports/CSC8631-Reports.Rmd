@@ -15,6 +15,13 @@ library(ProjectTemplate)
 load.project()
 ```
 
+# INtroduction
+This is test plot to check the the gender distribution.
+
+```{r, echo = FALSE}
+knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/test.png")
+```
+
 ## R Markdown
 Cyber Security - Course overview - FutureLearn Course Creator
 
