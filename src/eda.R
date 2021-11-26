@@ -103,6 +103,8 @@ b %>%
   ggplot(aes(x=Iteration , y=value, fill = key)) +
   geom_col(position = "dodge") 
 
+
+# Education level
 highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
 colnames(highest_education_level1) = "highest_education_level"
 highest_education_level2 = data.frame(enrolment_2$highest_education_level[enrolment_2$highest_education_level != "Unknown"])
@@ -120,25 +122,34 @@ colnames(highest_education_level7) = "highest_education_level"
 
 
 h1 = ggplot() +
-  geom_bar(highest_education_level1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h2 = ggplot() +
-  geom_bar(highest_education_level2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h3 = ggplot() +
-  geom_bar(highest_education_level3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h4 = ggplot() +
-  geom_bar(highest_education_level4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h5 = ggplot() +
-  geom_bar(highest_education_level5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h6 = ggplot() +
-  geom_bar(highest_education_level6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
 h7 = ggplot() +
-  geom_bar(highest_education_level7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+  geom_bar(highest_education_level7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
 
 
 install.packages("ggpubr")
 library(ggpubr)
 
 ggarrange(h1,h2,h3,h4,h5,h6,h7)
+
+
 
 
 
