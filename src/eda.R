@@ -17,66 +17,148 @@ gender6 = data.frame(enrolment_6$gender[enrolment_6$gender != "Unknown"])
 colnames(gender6) = "gender"
 gender7 = data.frame(enrolment_7$gender[enrolment_7$gender != "Unknown"])
 colnames(gender7) = "gender"
-ggplot() +
-  geom_bar(gender1, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  geom_bar(gender2, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
-  geom_bar(gender3, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  geom_bar(gender4, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  geom_bar(gender5, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  geom_bar(gender6, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  geom_bar(gender7, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) 
+#ggplot() +
+ # geom_bar(gender1, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender2, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
+  #geom_bar(gender3, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender4, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender5, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender6, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender7, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) 
   
 gender_count1 = data.frame(t(data.frame(table(gender1))))
-colnames(gender_count1) =  c("famale", "male", "nonbinary", "other")
+colnames(gender_count1) =  c("female", "male", "nonbinary", "other")
 gender_count1 = gender_count1[!(row.names(gender_count1) %in% c('gender1')),]
 gender_count1
 
 gender_count2 = data.frame(t(data.frame(table(gender2))))
-colnames(gender_count2) =  c("famale", "male", "nonbinary", "other")
+colnames(gender_count2) =  c("female", "male", "nonbinary", "other")
 gender_count2 = gender_count2[!(row.names(gender_count2) %in% c('gender2')),]
 gender_count2
 
 gender_count3 = data.frame(t(data.frame(table(gender3))))
-colnames(gender_count3) =  c("famale", "male", "nonbinary", "other")
+colnames(gender_count3) =  c("female", "male", "nonbinary", "other")
 gender_count3 = gender_count3[!(row.names(gender_count3) %in% c('gender3')),]
 gender_count3
 
 nonbinary = c(0)
+
 gender_count4 = (data.frame(table(gender4)))
 gender_count4 = rbind(gender_count4, nonbinary)
-levels(gender_count4$gender4) = c("male", "famale", "other", "nonbinary")
+levels(gender_count4$gender4) = c("male", "female", "other", "nonbinary")
 gender_count4$gender4[4] = "nonbinary"
 gender_count4 = gender_count4[, 1:2]
 gender_count4 = data.frame(t(gender_count4))
-colnames(gender_count4) =  c("male", "famale", "other", "nonbinary")
+colnames(gender_count4) =  c("male", "female", "other", "nonbinary")
 gender_count4 = gender_count4[!(row.names(gender_count4) %in% c('gender4')),]
 gender_count4 %>% select(order(colnames(.)))
 
-a = rbind(gender_count1,gender_count2,gender_count3,gender_count4)
+gender_count5 = (data.frame(table(gender5)))
+gender_count5 = rbind(gender_count5, nonbinary)
+levels(gender_count5$gender5) = c("male", "female", "other", "nonbinary")
+gender_count5$gender5[4] = "nonbinary"
+gender_count5 = gender_count5[, 1:2]
+gender_count5 = data.frame(t(gender_count5))
+colnames(gender_count5) =  c("male", "female", "other", "nonbinary")
+gender_count5 = gender_count5[!(row.names(gender_count5) %in% c('gender5')),]
+gender_count5 %>% select(order(colnames(.)))
 
-b = read.table(text = "Iteration famale male nonbinary other
-Iteration_1     767  919         6     6
-Iteration_2    339  411         4     2
-Iteration_3    174  195         2     1
-Iteration_4    244  168         0     2", header = T)
+gender_count6 = (data.frame(table(gender6)))
+gender_count6 = rbind(gender_count6, nonbinary)
+levels(gender_count6$gender6) = c("male", "female", "other", "nonbinary")
+gender_count6$gender6[4] = "nonbinary"
+gender_count6 = gender_count6[, 1:2]
+gender_count6 = data.frame(t(gender_count6))
+colnames(gender_count6) =  c("male", "female", "other", "nonbinary")
+gender_count6 = gender_count6[!(row.names(gender_count6) %in% c('gender6')),]
+gender_count6 %>% select(order(colnames(.)))
+
+gender_count7 = (data.frame(table(gender7)))
+gender_count7 = rbind(gender_count7, nonbinary)
+levels(gender_count7$gender7) = c("male", "female", "other", "nonbinary")
+gender_count7$gender7[4] = "nonbinary"
+gender_count7 = gender_count7[, 1:2]
+gender_count7 = data.frame(t(gender_count7))
+colnames(gender_count7) =  c("male", "female", "other", "nonbinary")
+gender_count7 = gender_count7[!(row.names(gender_count7) %in% c('gender7')),]
+gender_count7 %>% select(order(colnames(.)))
+
+
+a = rbind(gender_count1,gender_count2,gender_count3,gender_count4,gender_count5,gender_count6,gender_count7)
+a
+
+
+b = read.table(text = "Iteration female male nonbinary other
+Batch1     767  919         6     6
+Batch2    339  411         4     2
+Batch3    174  195         2     1
+Batch4    244  168         0     2
+Batch5    227  205         0     1
+Batch6    122  149         0     1
+Batch7    115   98         0     1", header = T)
 
 
 b %>%
   gather(key, value, -Iteration) %>% 
   ggplot(aes(x=Iteration , y=value, fill = key)) +
-  geom_col(position = "dodge")
+  geom_col(position = "dodge") 
 
-ggplot2.barplot(data=a, xName='Iteration of the Course', yName="Frequency",
-                groupName='sex', position=position_dodge())
+highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
+colnames(highest_education_level1) = "highest_education_level"
+highest_education_level2 = data.frame(enrolment_2$highest_education_level[enrolment_2$highest_education_level != "Unknown"])
+colnames(highest_education_level2) = "highest_education_level"
+highest_education_level3 = data.frame(enrolment_3$highest_education_level[enrolment_3$highest_education_level != "Unknown"])
+colnames(highest_education_level3) = "highest_education_level"
+highest_education_level4 = data.frame(enrolment_4$highest_education_level[enrolment_4$highest_education_level != "Unknown"])
+colnames(highest_education_level4) = "highest_education_level"
+highest_education_level5 = data.frame(enrolment_5$highest_education_level[enrolment_5$highest_education_level != "Unknown"])
+colnames(highest_education_level5) = "highest_education_level"
+highest_education_level6 = data.frame(enrolment_6$highest_education_level[enrolment_6$highest_education_level != "Unknown"])
+colnames(highest_education_level6) = "highest_education_level"
+highest_education_level7 = data.frame(enrolment_7$highest_education_level[enrolment_7$highest_education_level != "Unknown"])
+colnames(highest_education_level7) = "highest_education_level"
+
+
+h1 = ggplot() +
+  geom_bar(highest_education_level1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h2 = ggplot() +
+  geom_bar(highest_education_level2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h3 = ggplot() +
+  geom_bar(highest_education_level3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h4 = ggplot() +
+  geom_bar(highest_education_level4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h5 = ggplot() +
+  geom_bar(highest_education_level5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h6 = ggplot() +
+  geom_bar(highest_education_level6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+h7 = ggplot() +
+  geom_bar(highest_education_level7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+
+install.packages("ggpubr")
+library(ggpubr)
+
+ggarrange(h1,h2,h3,h4,h5,h6,h7)
 
 
 
 
-gender_count5 = data.frame(table(gender5),nonbinary)
-gender_count5
 
-gender_count6 = data.frame(table(gender6))
-gender_count6
 
-gender_count7 = data.frame(table(gender7))
-gender_count7
+
+
+
+
+
+
+#a2 = rbind(highest_education_level1,highest_education_level2,highest_education_level3,highest_education_level4,highest_education_level5,highest_education_level6,highest_education_level7)
+#a2
+
+#Creating a dataset
+#edu1 <- c(rep("highest_education_level1" , 8) , rep("highest_education_level2" , 8))
+#level1 <- rep(c("apprenticeship" , "less_than_Secondary" , "professional","secondary","tertiary","university_degree","university_doctorate","university_masters"))
+#value <- abs(rnorm(12 , 0 , 15))
+#data <- data.frame(edu1,level1,value)
+
+
+
