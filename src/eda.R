@@ -291,7 +291,7 @@ dev.off()
 
 
 
-#Checking the employment status of each learner from batch 1
+#Checking the employment status of each learner from all batches
 
 employment_status_1 = data.frame(enrolment_1$employment_status[enrolment_1$employment_status != "Unknown"])
 colnames(employment_status_1) = "employment_status"
@@ -335,3 +335,57 @@ emp_stat7 = ggplot() +
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/employment_Status_learners.png",width = 1920, height = 1080)
 ggarrange(emp_stat1,emp_stat2,emp_stat3,emp_stat4,emp_stat5,emp_stat6,emp_stat7)
 dev.off()
+
+
+# checking the employment area of all the learners
+employment_area_1 = data.frame(enrolment_1$employment_area[enrolment_1$employment_area != "Unknown"])
+colnames(employment_area_1) = "employment_area"
+employment_area_2 = data.frame(enrolment_2$employment_area[enrolment_2$employment_area != "Unknown"])
+colnames(employment_area_2) = "employment_area"
+employment_area_3 = data.frame(enrolment_3$employment_area[enrolment_3$employment_area != "Unknown"])
+colnames(employment_area_3) = "employment_area"
+employment_area_4 = data.frame(enrolment_4$employment_area[enrolment_4$employment_area != "Unknown"])
+colnames(employment_area_4) = "employment_area"
+employment_area_5 = data.frame(enrolment_5$employment_area[enrolment_5$employment_area != "Unknown"])
+colnames(employment_area_5) = "employment_area"
+employment_area_6 = data.frame(enrolment_6$employment_area[enrolment_6$employment_area != "Unknown"])
+colnames(employment_area_6) = "employment_area"
+employment_area_7 = data.frame(enrolment_7$employment_area[enrolment_7$employment_area != "Unknown"])
+colnames(employment_area_7) = "employment_area"
+
+# Plotting the employment area of all learners on the graph
+
+emp_area1 = ggplot() +
+  geom_bar(employment_area_1, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area2 = ggplot() +
+  geom_bar(employment_area_2, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area3 = ggplot() +
+  geom_bar(employment_area_3, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area4 = ggplot() +
+  geom_bar(employment_area_4, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area5 = ggplot() +
+  geom_bar(employment_area_5, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area6 = ggplot() +
+  geom_bar(employment_area_6, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500)) + theme(axis.text.x = element_text(angle = 90))
+emp_area7 = ggplot() +
+  geom_bar(employment_area_7, mapping = aes(employment_area,fill=employment_area), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,500))+ theme(axis.text.x = element_text(angle = 90))
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/employment_area_learners.png",width = 1920, height = 1080)
+ggarrange(emp_area1,emp_area2,emp_area3,emp_area4,emp_area5,emp_area6,emp_area7)
+dev.off()
+
+
+##Checking the countries
+
+#countries_df1 <- enrolment_1 %>% filter(year=="2007") %>% dplyr::select(-year)
+
+# Most basic bubble plot
+#ggplot(data, aes(x=gdpPercap, y=lifeExp, size = pop)) +
+ # geom_point(alpha=0.7)
