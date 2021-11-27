@@ -172,8 +172,8 @@ fully_particiapted_df1 = enrolment_1[idx_fully_participated1,]
 high_edu_lvl1 = data.frame(fully_particiapted_df1$highest_education_level[fully_particiapted_df1$highest_education_level != "Unknown"])
 colnames(high_edu_lvl1) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) 
+#ggplot() +
+ # geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) 
 
 # for second batch
 idx_fully_participated2 = which(enrolment_2$fully_participated_at != "")
@@ -184,8 +184,8 @@ fully_particiapted_df2 = enrolment_2[idx_fully_participated2,]
 high_edu_lvl2 = data.frame(fully_particiapted_df2$highest_education_level[fully_particiapted_df2$highest_education_level != "Unknown"])
 colnames(high_edu_lvl2) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 # for third batch
 idx_fully_participated3 = which(enrolment_3$fully_participated_at != "")
@@ -196,8 +196,8 @@ fully_particiapted_df3 = enrolment_3[idx_fully_participated3,]
 high_edu_lvl3 = data.frame(fully_particiapted_df3$highest_education_level[fully_particiapted_df3$highest_education_level != "Unknown"])
 colnames(high_edu_lvl3) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 # for 4th batch
 
@@ -209,8 +209,8 @@ fully_particiapted_df4 = enrolment_4[idx_fully_participated4,]
 high_edu_lvl4 = data.frame(fully_particiapted_df4$highest_education_level[fully_particiapted_df4$highest_education_level != "Unknown"])
 colnames(high_edu_lvl4) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
     
 # for 5th batch
@@ -218,13 +218,13 @@ ggplot() +
 idx_fully_participated5 = which(enrolment_5$fully_participated_at != "")
 idx_fully_participated5
 
-fully_particiapted_df5 = enrolment_5[idx_fully_participated1,]
+fully_particiapted_df5 = enrolment_5[idx_fully_participated5,]
 
 high_edu_lvl5 = data.frame(fully_particiapted_df5$highest_education_level[fully_particiapted_df5$highest_education_level != "Unknown"])
 colnames(high_edu_lvl5) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
 # for 6th batch
@@ -237,8 +237,8 @@ fully_particiapted_df6 = enrolment_6[idx_fully_participated6,]
 high_edu_lvl6 = data.frame(fully_particiapted_df6$highest_education_level[fully_particiapted_df6$highest_education_level != "Unknown"])
 colnames(high_edu_lvl6) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 # for seventh batch
 
@@ -250,49 +250,37 @@ fully_particiapted_df7 = enrolment_7[idx_fully_participated7,]
 high_edu_lvl7 = data.frame(fully_particiapted_df7$highest_education_level[fully_particiapted_df7$highest_education_level != "Unknown"])
 colnames(high_edu_lvl7) = "highest_education_level"
 
-ggplot() +
-  geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+#ggplot() +
+ # geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
 
 
 ######
 
-high_edu_lvl2 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl2) = "highest_education_level"
 
-high_edu_lvl3 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl3) = "highest_education_level"
-high_edu_lvl4 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl4) = "highest_education_level"
-high_edu_lvl5 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl5) = "highest_education_level"
-high_edu_lvl6 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl6) = "highest_education_level"
-high_edu_lvl7 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
-colnames(high_edu_lvl7) = "highest_education_level"
 
 h1_fp = ggplot() +
   geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h2_fp = ggplot() +
   geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h3_fp = ggplot() +
   geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h4_fp = ggplot() +
   geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h5_fp = ggplot() +
   geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h6_fp = ggplot() +
   geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300)) + theme(axis.text.x = element_text(angle = 90))
 h7_fp = ggplot() +
   geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
-  coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
+  coord_cartesian(ylim = c(0,300))+ theme(axis.text.x = element_text(angle = 90))
 
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/participants_edu_lvl.png",width = 1920, height = 1080)
@@ -305,7 +293,45 @@ dev.off()
 
 #Checking the employment status of each learner from batch 1
 
-emp_stat1 <- select(enrolment_1, enrolment_1$employment_status[enrolment_1$employment_status!= "Unknown"])
-emp_stat1
+employment_status_1 = data.frame(enrolment_1$employment_status[enrolment_1$employment_status != "Unknown"])
+colnames(employment_status_1) = "employment_status"
+employment_status_2 = data.frame(enrolment_2$employment_status[enrolment_2$employment_status != "Unknown"])
+colnames(employment_status_2) = "employment_status"
+employment_status_3 = data.frame(enrolment_3$employment_status[enrolment_3$employment_status != "Unknown"])
+colnames(employment_status_3) = "employment_status"
+employment_status_4 = data.frame(enrolment_4$employment_status[enrolment_4$employment_status != "Unknown"])
+colnames(employment_status_4) = "employment_status"
+employment_status_5 = data.frame(enrolment_5$employment_status[enrolment_5$employment_status != "Unknown"])
+colnames(employment_status_5) = "employment_status"
+employment_status_6 = data.frame(enrolment_6$employment_status[enrolment_6$employment_status != "Unknown"])
+colnames(employment_status_6) = "employment_status"
+employment_status_7 = data.frame(enrolment_7$employment_status[enrolment_7$employment_status != "Unknown"])
+colnames(employment_status_7) = "employment_status"
 
+# Plotting the employment status of all learners on the graph
 
+emp_stat1 = ggplot() +
+  geom_bar(employment_status_1, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat2 = ggplot() +
+  geom_bar(employment_status_2, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat3 = ggplot() +
+  geom_bar(employment_status_3, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat4 = ggplot() +
+  geom_bar(employment_status_4, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat5 = ggplot() +
+  geom_bar(employment_status_5, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat6 = ggplot() +
+  geom_bar(employment_status_6, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+emp_stat7 = ggplot() +
+  geom_bar(employment_status_7, mapping = aes(employment_status,fill=employment_status), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/employment_Status_learners.png",width = 1920, height = 1080)
+ggarrange(emp_stat1,emp_stat2,emp_stat3,emp_stat4,emp_stat5,emp_stat6,emp_stat7)
+dev.off()
