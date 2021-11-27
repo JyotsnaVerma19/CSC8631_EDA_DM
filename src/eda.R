@@ -1,5 +1,5 @@
-library('ProjectTemplate')
-load.project()
+#library('ProjectTemplate')
+#load.project()
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/test.png",width = 1920, height = 1080)
 ggplot(enrolment_1, aes(gender,fill=gender)) + geom_bar()
 dev.off()
@@ -22,7 +22,7 @@ colnames(gender7) = "gender"
   #geom_bar(gender2, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
   #geom_bar(gender3, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
   #geom_bar(gender4, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  #geom_bar(gender5, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
+  #geom_bar(gender5, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
   #geom_bar(gender6, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
   #geom_bar(gender7, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) 
   
@@ -107,6 +107,8 @@ b %>%
 # Education level
 highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
 colnames(highest_education_level1) = "highest_education_level"
+
+
 highest_education_level2 = data.frame(enrolment_2$highest_education_level[enrolment_2$highest_education_level != "Unknown"])
 colnames(highest_education_level2) = "highest_education_level"
 highest_education_level3 = data.frame(enrolment_3$highest_education_level[enrolment_3$highest_education_level != "Unknown"])
@@ -146,30 +148,164 @@ h7 = ggplot() +
 
 install.packages("ggpubr")
 library(ggpubr)
-
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/learners_edu_lvl.png",width = 1920, height = 1080)
 ggarrange(h1,h2,h3,h4,h5,h6,h7)
+dev.off()
+
+
+#Checking which gender tends to complete the course
+
+highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
+colnames(highest_education_level1) = "highest_education_level"
+
+write.csv(fully_particiapted_df1,"C:/Users/Payal/Desktop/Future_Learn_EDA_DM/Sample/trial_participation.csv", row.names = FALSE)
+
+
+# Highest education level of ppl who finished the course
+
+# for first batch
+idx_fully_participated1 = which(enrolment_1$fully_participated_at != "")
+idx_fully_participated1
+
+fully_particiapted_df1 = enrolment_1[idx_fully_participated1,]
+
+high_edu_lvl1 = data.frame(fully_particiapted_df1$highest_education_level[fully_particiapted_df1$highest_education_level != "Unknown"])
+colnames(high_edu_lvl1) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) 
+
+# for second batch
+idx_fully_participated2 = which(enrolment_2$fully_participated_at != "")
+idx_fully_participated2
+
+fully_particiapted_df2 = enrolment_2[idx_fully_participated2,]
+
+high_edu_lvl2 = data.frame(fully_particiapted_df2$highest_education_level[fully_particiapted_df2$highest_education_level != "Unknown"])
+colnames(high_edu_lvl2) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+# for third batch
+idx_fully_participated3 = which(enrolment_3$fully_participated_at != "")
+idx_fully_participated3
+
+fully_particiapted_df3 = enrolment_3[idx_fully_participated3,]
+
+high_edu_lvl3 = data.frame(fully_particiapted_df3$highest_education_level[fully_particiapted_df3$highest_education_level != "Unknown"])
+colnames(high_edu_lvl3) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+# for 4th batch
+
+idx_fully_participated4 = which(enrolment_4$fully_participated_at != "")
+idx_fully_participated4
+
+fully_particiapted_df4 = enrolment_4[idx_fully_participated4,]
+
+high_edu_lvl4 = data.frame(fully_particiapted_df4$highest_education_level[fully_particiapted_df4$highest_education_level != "Unknown"])
+colnames(high_edu_lvl4) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+    
+# for 5th batch
+
+idx_fully_participated5 = which(enrolment_5$fully_participated_at != "")
+idx_fully_participated5
+
+fully_particiapted_df5 = enrolment_5[idx_fully_participated1,]
+
+high_edu_lvl5 = data.frame(fully_particiapted_df5$highest_education_level[fully_particiapted_df5$highest_education_level != "Unknown"])
+colnames(high_edu_lvl5) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+
+# for 6th batch
+
+idx_fully_participated6 = which(enrolment_6$fully_participated_at != "")
+idx_fully_participated6
+
+fully_particiapted_df6 = enrolment_6[idx_fully_participated6,]
+
+high_edu_lvl6 = data.frame(fully_particiapted_df6$highest_education_level[fully_particiapted_df6$highest_education_level != "Unknown"])
+colnames(high_edu_lvl6) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+# for seventh batch
+
+idx_fully_participated7 = which(enrolment_7$fully_participated_at != "")
+idx_fully_participated7
+
+fully_particiapted_df7 = enrolment_7[idx_fully_participated7,]
+
+high_edu_lvl7 = data.frame(fully_particiapted_df7$highest_education_level[fully_particiapted_df7$highest_education_level != "Unknown"])
+colnames(high_edu_lvl7) = "highest_education_level"
+
+ggplot() +
+  geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
+
+
+
+######
+
+high_edu_lvl2 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl2) = "highest_education_level"
+
+high_edu_lvl3 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl3) = "highest_education_level"
+high_edu_lvl4 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl4) = "highest_education_level"
+high_edu_lvl5 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl5) = "highest_education_level"
+high_edu_lvl6 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl6) = "highest_education_level"
+high_edu_lvl7 = data.frame(fully_particiapted_df$highest_education_level[fully_particiapted_df$highest_education_level != "Unknown"])
+colnames(high_edu_lvl7) = "highest_education_level"
+
+h1_fp = ggplot() +
+  geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h2_fp = ggplot() +
+  geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h3_fp = ggplot() +
+  geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h4_fp = ggplot() +
+  geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h5_fp = ggplot() +
+  geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h6_fp = ggplot() +
+  geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750)) + theme(axis.text.x = element_text(angle = 90))
+h7_fp = ggplot() +
+  geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) + 
+  coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
+
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/participants_edu_lvl.png",width = 1920, height = 1080)
+ggarrange(h1_fp,h2_fp,h3_fp,h4_fp,h5_fp,h6_fp,h7_fp)
+dev.off()
 
 
 
 
 
+#Checking the employment status of each learner from batch 1
 
-
-
-
-
-
-
-
-
-#a2 = rbind(highest_education_level1,highest_education_level2,highest_education_level3,highest_education_level4,highest_education_level5,highest_education_level6,highest_education_level7)
-#a2
-
-#Creating a dataset
-#edu1 <- c(rep("highest_education_level1" , 8) , rep("highest_education_level2" , 8))
-#level1 <- rep(c("apprenticeship" , "less_than_Secondary" , "professional","secondary","tertiary","university_degree","university_doctorate","university_masters"))
-#value <- abs(rnorm(12 , 0 , 15))
-#data <- data.frame(edu1,level1,value)
-
+emp_stat1 <- select(enrolment_1, enrolment_1$employment_status[enrolment_1$employment_status!= "Unknown"])
+emp_stat1
 
 
