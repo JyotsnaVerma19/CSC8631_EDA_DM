@@ -98,11 +98,14 @@ Batch6    122  149         0     1
 Batch7    115   98         0     1", header = T)
 
 
-b %>%
+learners_gender = b %>%
   gather(key, value, -Iteration) %>% 
   ggplot(aes(x=Iteration , y=value, fill = key)) +
   geom_col(position = "dodge") 
 
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png",width = 1920, height = 1080)
+ggarrange(learners_gender)
+dev.off()
 
 # Education level
 highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
@@ -387,5 +390,152 @@ dev.off()
 #countries_df1 <- enrolment_1 %>% filter(year=="2007") %>% dplyr::select(-year)
 
 # Most basic bubble plot
-#ggplot(data, aes(x=gdpPercap, y=lifeExp, size = pop)) +
- # geom_point(alpha=0.7)
+
+
+
+countries_df1 = data.frame(table(enrolment_1$detected_country))
+countries_df1
+plot(countries_df1)
+points(countries_df1)
+
+
+###### I CAN USE STACKED BAR CHART  AS WELL TO PLOT MULTIPLRE CATEGORICAL VARIABLES
+## CLUSTERED BARCHART IS BETTER OPTION BECAUSE OF UNDERSTANDING
+###
+
+
+
+dftrial <- select(enrolment_1,gender, employment_status)
+
+ggplot(dftrial, aes(employment_status, ..count..)) + geom_bar(aes(fill = gender), position = "dodge")
+
+
+### overall view of employment area of the learners who are interested in the course .. (7 batches)
+install.packages("janitor")
+library(janitor)
+emp_area_count1 = data.frame(t(data.frame(table(employment_area_1))))
+emp_area_count1 = emp_area_count1 %>%
+  row_to_names(row_number = 1)
+emp_area_count1 %>% select(order(colnames(.)))
+
+emp_area_count2 = data.frame(t(data.frame(table(employment_area_2))))
+emp_area_count2 = emp_area_count2 %>%
+  row_to_names(row_number = 1)
+emp_area_count2 %>% select(order(colnames(.)))
+
+emp_area_count3 = data.frame(t(data.frame(table(employment_area_3))))
+emp_area_count3 = emp_area_count3 %>%
+  row_to_names(row_number = 1)
+emp_area_count3 %>% select(order(colnames(.)))
+
+emp_area_count4 = data.frame(t(data.frame(table(employment_area_4))))
+emp_area_count4 = emp_area_count4 %>%
+  row_to_names(row_number = 1)
+emp_area_count4 %>% select(order(colnames(.)))
+
+emp_area_count5 = data.frame(t(data.frame(table(employment_area_5))))
+emp_area_count5 = emp_area_count5 %>%
+  row_to_names(row_number = 1)
+emp_area_count5 %>% select(order(colnames(.)))
+
+emp_area_count6 = data.frame(t(data.frame(table(employment_area_6))))
+emp_area_count6 = emp_area_count6 %>%
+  row_to_names(row_number = 1)
+emp_area_count6 = cbind(emp_area_count6,recruitment_and_pr = c(0))
+emp_area_count6 %>% select(order(colnames(.)))
+
+emp_area_count7 = data.frame(t(data.frame(table(employment_area_7))))
+emp_area_count7 = emp_area_count7 %>%
+  row_to_names(row_number = 1)
+emp_area_count7 = cbind(emp_area_count7,energy_and_utilities = c(0))
+emp_area_count7 %>% select(order(colnames(.)))
+                        
+emp_area_count = rbind(emp_area_count1,emp_area_count2,emp_area_count3,emp_area_count4,emp_area_count5,emp_area_count6,emp_area_count7)
+emp_area_count
+
+write.csv(emp_area_count,file = "C:/Users/Payal/Desktop/Future_Learn_EDA_DM/data/emp_area_count_file.csv")
+
+
+emp_count = read.table(text = "C:/Users/Payal/Desktop/Future_Learn_EDA_DM/data/emp_area_count_file.csv", header = T)
+
+
+
+
+
+
+
+
+
+
+
+#colnames(employment_area_1) =  c("female", "male", "nonbinary", "other")
+emp_area_count1 = emp_area_count1[!(row.names(gender_count1) %in% c('gender1')),]
+gender_count1
+
+emp_area_count2 = data.frame(t(data.frame(table(gender2))))
+colnames(gender_count2) =  c("female", "male", "nonbinary", "other")
+gender_count2 = gender_count2[!(row.names(gender_count2) %in% c('gender2')),]
+gender_count2
+
+emp_area_count3 = data.frame(t(data.frame(table(gender3))))
+colnames(gender_count3) =  c("female", "male", "nonbinary", "other")
+gender_count3 = gender_count3[!(row.names(gender_count3) %in% c('gender3')),]
+gender_count3
+
+nonbinary = c(0)
+
+emp_area_count4 = (data.frame(table(gender4)))
+gender_count4 = rbind(gender_count4, nonbinary)
+levels(gender_count4$gender4) = c("male", "female", "other", "nonbinary")
+gender_count4$gender4[4] = "nonbinary"
+gender_count4 = gender_count4[, 1:2]
+gender_count4 = data.frame(t(gender_count4))
+colnames(gender_count4) =  c("male", "female", "other", "nonbinary")
+gender_count4 = gender_count4[!(row.names(gender_count4) %in% c('gender4')),]
+gender_count4 %>% select(order(colnames(.)))
+
+emp_area_count5 = (data.frame(table(gender5)))
+gender_count5 = rbind(gender_count5, nonbinary)
+levels(gender_count5$gender5) = c("male", "female", "other", "nonbinary")
+gender_count5$gender5[4] = "nonbinary"
+gender_count5 = gender_count5[, 1:2]
+gender_count5 = data.frame(t(gender_count5))
+colnames(gender_count5) =  c("male", "female", "other", "nonbinary")
+gender_count5 = gender_count5[!(row.names(gender_count5) %in% c('gender5')),]
+gender_count5 %>% select(order(colnames(.)))
+
+emp_area_count6 = (data.frame(table(gender6)))
+gender_count6 = rbind(gender_count6, nonbinary)
+levels(gender_count6$gender6) = c("male", "female", "other", "nonbinary")
+gender_count6$gender6[4] = "nonbinary"
+gender_count6 = gender_count6[, 1:2]
+gender_count6 = data.frame(t(gender_count6))
+colnames(gender_count6) =  c("male", "female", "other", "nonbinary")
+gender_count6 = gender_count6[!(row.names(gender_count6) %in% c('gender6')),]
+gender_count6 %>% select(order(colnames(.)))
+
+emp_area_count7 = (data.frame(table(gender7)))
+gender_count7 = rbind(gender_count7, nonbinary)
+levels(gender_count7$gender7) = c("male", "female", "other", "nonbinary")
+gender_count7$gender7[4] = "nonbinary"
+gender_count7 = gender_count7[, 1:2]
+gender_count7 = data.frame(t(gender_count7))
+colnames(gender_count7) =  c("male", "female", "other", "nonbinary")
+gender_count7 = gender_count7[!(row.names(gender_count7) %in% c('gender7')),]
+gender_count7 %>% select(order(colnames(.)))
+
+
+a = rbind(gender_count1,gender_count2,gender_count3,gender_count4,gender_count5,gender_count6,gender_count7)
+a
+
+
+
+
+learners_gender = b %>%
+  gather(key, value, -Iteration) %>% 
+  ggplot(aes(x=Iteration , y=value, fill = key)) +
+  geom_col(position = "dodge") 
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png",width = 1920, height = 1080)
+ggarrange(learners_gender)
+dev.off()
