@@ -59,3 +59,26 @@ step_activity_7 <- cyber.security.7_step.activity
 team_members_7 <- cyber.security.7_team.members
 video_stats_7 <- cyber.security.7_video.stats
 weekly_sentiment_7 <- cyber.security.7_weekly.sentiment.survey.responses
+
+
+#
+# Merging data of all batches for arhetype
+all_archetype = rbind(archetype_1,archetype_2,archetype_3,archetype_4,archetype_5,archetype_6,archetype_7)
+
+#Merging the enrolment data for all batches
+all_enrolments = rbind(enrolment_1,enrolment_2,enrolment_3,enrolment_4,enrolment_5,enrolment_6,enrolment_7)
+
+#Merging the video stats data for all batches
+all_video_stats = rbind(video_stats_3,video_stats_4,video_stats_5,video_stats_6,video_stats_7)
+
+#Merging the Weekly sentiment data for all batches
+all_weekly_sentiment = rbind(weekly_sentiment_1,weekly_sentiment_2,weekly_sentiment_3,weekly_sentiment_4,weekly_sentiment_5, weekly_sentiment_6, weekly_sentiment_7)
+
+#Merging the leaving survey data for all batches
+all_leaving_survey = rbind(leaving_survey_1,leaving_survey_2,leaving_survey_3,leaving_survey_4,leaving_survey_5,leaving_survey_6,leaving_survey_7)
+
+
+# Left joining the enrolment data and the archetype data
+
+arche_enrol_all <- merge(x= all_enrolments ,y=all_archetype[,c(2,4)], by = "learner_id", all.x=TRUE)
+
