@@ -16,10 +16,13 @@ load.project()
 ```
 
 # INtroduction
-This is test plot to check the the gender distribution.
+This is test plot to check the the no of learners.
 
-```{r, echo = FALSE}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/test.png")
+1. this istril 
+2. this is also trial
+
+```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled vs who completed across all batches"}
+knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
 ```
 
 ## R Markdown

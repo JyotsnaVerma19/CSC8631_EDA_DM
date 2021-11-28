@@ -17,14 +17,6 @@ gender6 = data.frame(enrolment_6$gender[enrolment_6$gender != "Unknown"])
 colnames(gender6) = "gender"
 gender7 = data.frame(enrolment_7$gender[enrolment_7$gender != "Unknown"])
 colnames(gender7) = "gender"
-#ggplot() +
- # geom_bar(gender1, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  #geom_bar(gender2, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
-  #geom_bar(gender3, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  #geom_bar(gender4, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  #geom_bar(gender5, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) + 
-  #geom_bar(gender6, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) +
-  #geom_bar(gender7, mapping = aes(gender,fill=gender), stat = "count", position = position_dodge()) 
   
 gender_count1 = data.frame(t(data.frame(table(gender1))))
 colnames(gender_count1) =  c("female", "male", "nonbinary", "other")
@@ -458,10 +450,10 @@ row.names(emp_area_count) = NULL
 emp_area_plot = emp_area_count %>%
   gather(key, value, -Batch) %>% 
   ggplot(aes(x=Batch , y=value, fill = key)) +
-  geom_col(position = "dodge") 
+  geom_col(position = "dodge" ) 
 
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png",width = 1920, height = 1080)
-ggarrange(learners_gender)
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/emp_area_plot.png",width = 1920, height = 1080)
+ggarrange(emp_area_plot)
 dev.off()
 
 #####  Checking the number of learners enrolled in each batch
@@ -520,5 +512,21 @@ enrollred_vs_completed %>% select(order(colnames(.)))
 # Plotting the no of learners over the years for all batches
 
 
+enrollred_vs_completed = melt(enrollred_vs_completed, id.vars = c('Batch'))
+colnames(enrollred_vs_completed) = c("Batch","Status", "Count")
+enrol_vs_comp_plot = ggplot(enrollred_vs_completed, aes(x=Batch, y=Count, group=Status)) +
+  geom_line(aes(color=Status), size = 1)+
+  geom_point(aes(color=Status),size = 4)+
+  ylab("No. of learners")
 
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png",width = 1920, height = 1080)
+ggarrange(enrol_vs_comp_plot)
+dev.off()  
 
+#Plotting gender of the learners for all the batches 
+
+all_gender = data.frame(all_enrolments$gender[all_enrolments$gender != "Unknown"])
+colnames(all_gender) = "gender"
+all_gender_plot = ggplot(all_gender, aes(gender,fill=gender)) + geom_bar()
+
+##Plotting gender of the learners for all the batches 
