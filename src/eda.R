@@ -451,91 +451,27 @@ emp_area_count7 = cbind(emp_area_count7,energy_and_utilities = c(0))
 emp_area_count7 %>% select(order(colnames(.)))
                         
 emp_area_count = rbind(emp_area_count1,emp_area_count2,emp_area_count3,emp_area_count4,emp_area_count5,emp_area_count6,emp_area_count7)
-emp_area_count
+emp_area_count = cbind(emp_area_count, Batch = c("Batch 1", "Batch 2","Batch 3","Batch 4","Batch 5","Batch 6","Batch 7"))
 
-write.csv(emp_area_count,file = "C:/Users/Payal/Desktop/Future_Learn_EDA_DM/data/emp_area_count_file.csv")
+row.names(emp_area_count) = NULL
 
-
-emp_count = read.table(text = "C:/Users/Payal/Desktop/Future_Learn_EDA_DM/data/emp_area_count_file.csv", header = T)
-
-
-
-
-
-
-
-
-
-
-
-#colnames(employment_area_1) =  c("female", "male", "nonbinary", "other")
-emp_area_count1 = emp_area_count1[!(row.names(gender_count1) %in% c('gender1')),]
-gender_count1
-
-emp_area_count2 = data.frame(t(data.frame(table(gender2))))
-colnames(gender_count2) =  c("female", "male", "nonbinary", "other")
-gender_count2 = gender_count2[!(row.names(gender_count2) %in% c('gender2')),]
-gender_count2
-
-emp_area_count3 = data.frame(t(data.frame(table(gender3))))
-colnames(gender_count3) =  c("female", "male", "nonbinary", "other")
-gender_count3 = gender_count3[!(row.names(gender_count3) %in% c('gender3')),]
-gender_count3
-
-nonbinary = c(0)
-
-emp_area_count4 = (data.frame(table(gender4)))
-gender_count4 = rbind(gender_count4, nonbinary)
-levels(gender_count4$gender4) = c("male", "female", "other", "nonbinary")
-gender_count4$gender4[4] = "nonbinary"
-gender_count4 = gender_count4[, 1:2]
-gender_count4 = data.frame(t(gender_count4))
-colnames(gender_count4) =  c("male", "female", "other", "nonbinary")
-gender_count4 = gender_count4[!(row.names(gender_count4) %in% c('gender4')),]
-gender_count4 %>% select(order(colnames(.)))
-
-emp_area_count5 = (data.frame(table(gender5)))
-gender_count5 = rbind(gender_count5, nonbinary)
-levels(gender_count5$gender5) = c("male", "female", "other", "nonbinary")
-gender_count5$gender5[4] = "nonbinary"
-gender_count5 = gender_count5[, 1:2]
-gender_count5 = data.frame(t(gender_count5))
-colnames(gender_count5) =  c("male", "female", "other", "nonbinary")
-gender_count5 = gender_count5[!(row.names(gender_count5) %in% c('gender5')),]
-gender_count5 %>% select(order(colnames(.)))
-
-emp_area_count6 = (data.frame(table(gender6)))
-gender_count6 = rbind(gender_count6, nonbinary)
-levels(gender_count6$gender6) = c("male", "female", "other", "nonbinary")
-gender_count6$gender6[4] = "nonbinary"
-gender_count6 = gender_count6[, 1:2]
-gender_count6 = data.frame(t(gender_count6))
-colnames(gender_count6) =  c("male", "female", "other", "nonbinary")
-gender_count6 = gender_count6[!(row.names(gender_count6) %in% c('gender6')),]
-gender_count6 %>% select(order(colnames(.)))
-
-emp_area_count7 = (data.frame(table(gender7)))
-gender_count7 = rbind(gender_count7, nonbinary)
-levels(gender_count7$gender7) = c("male", "female", "other", "nonbinary")
-gender_count7$gender7[4] = "nonbinary"
-gender_count7 = gender_count7[, 1:2]
-gender_count7 = data.frame(t(gender_count7))
-colnames(gender_count7) =  c("male", "female", "other", "nonbinary")
-gender_count7 = gender_count7[!(row.names(gender_count7) %in% c('gender7')),]
-gender_count7 %>% select(order(colnames(.)))
-
-
-a = rbind(gender_count1,gender_count2,gender_count3,gender_count4,gender_count5,gender_count6,gender_count7)
-a
-
-
-
-
-learners_gender = b %>%
-  gather(key, value, -Iteration) %>% 
-  ggplot(aes(x=Iteration , y=value, fill = key)) +
+emp_area_plot = emp_area_count %>%
+  gather(key, value, -Batch) %>% 
+  ggplot(aes(x=Batch , y=value, fill = key)) +
   geom_col(position = "dodge") 
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png",width = 1920, height = 1080)
 ggarrange(learners_gender)
 dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
