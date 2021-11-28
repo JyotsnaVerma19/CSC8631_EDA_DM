@@ -464,13 +464,60 @@ png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png"
 ggarrange(learners_gender)
 dev.off()
 
+#####  Checking the number of learners enrolled in each batch
+
+dim_enrol1 = data.frame(rows = dim(enrolment_1)[1])
+dim_enrol1
+
+dim_enrol2 = data.frame(rows = dim(enrolment_2)[1])
+
+dim_enrol3 = data.frame(rows = dim(enrolment_3)[1])
+
+dim_enrol4 = data.frame(rows = dim(enrolment_4)[1])
+
+dim_enrol5 = data.frame(rows = dim(enrolment_5)[1])
+
+dim_enrol6 = data.frame(rows = dim(enrolment_6)[1])
+
+dim_enrol7 = data.frame(rows = dim(enrolment_7)[1])
+
+dim_enrol_df = rbind(dim_enrol1,dim_enrol2,dim_enrol3,dim_enrol4,dim_enrol5,dim_enrol6,dim_enrol7)
+
+dim_enrol_df = cbind(dim_enrol_df, batch = c("Batch 1","Batch 2","Batch 3","Batch 4","Batch 5","Batch 6","Batch 7"))
+dim_enrol_df
+
+
+
+# checking the nuber of learners who fully participated in the course
+
+
+dim_participated_1 = data.frame(rows = dim(fully_particiapted_df1)[1])
+dim_participated_1
+
+dim_participated_2 = data.frame(rows = dim(fully_particiapted_df2)[1])
+
+dim_participated_3 = data.frame(rows = dim(fully_particiapted_df3)[1])
+
+dim_participated_4 = data.frame(rows = dim(fully_particiapted_df4)[1])
+
+dim_participated_5 = data.frame(rows = dim(fully_particiapted_df5)[1])
+
+dim_participated_6 = data.frame(rows = dim(fully_particiapted_df6)[1])
+
+dim_participated_7 = data.frame(rows = dim(fully_particiapted_df7)[1])
+
+dim_participated_df = rbind(dim_participated_1,dim_participated_2,dim_participated_3,dim_participated_4,dim_participated_5,dim_participated_6,dim_participated_7)
+
+enrollred_vs_completed = cbind(dim_enrol_df, dim_participated_df)
+
+colnames(enrollred_vs_completed) = c("enrolled_Count","Batch", "complete_count")
+
+enrollred_vs_completed %>% select(order(colnames(.)))
 
 
 
 
-
-
-
+# Plotting the no of learners over the years for all batches
 
 
 

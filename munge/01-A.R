@@ -82,3 +82,5 @@ all_leaving_survey = rbind(leaving_survey_1,leaving_survey_2,leaving_survey_3,le
 
 arche_enrol_all <- merge(x= all_enrolments ,y=all_archetype[,c(2,4)], by = "learner_id", all.x=TRUE)
 
+
+
