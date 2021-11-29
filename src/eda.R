@@ -379,7 +379,6 @@ dev.off()
 
 ##Checking the countries
 
-#countries_df1 <- enrolment_1 %>% filter(year=="2007") %>% dplyr::select(-year)
 
 # Most basic bubble plot
 
@@ -580,7 +579,13 @@ arche_enrol_all_df = na.omit(arche_enrol_all_df)
 
 arche_participants = data.frame(arche_enrol_all_df$archetype)
 colnames(arche_participants) = "archetype"
-arche_enrol_all_df_plot = ggplot(arche_enrol_all_df, aes(archetype,fill=archetype)) + geom_bar() + coord_polar()
+arche_enrol_all_df_plot = ggplot(arche_enrol_all_df, aes(archetype,fill=archetype)) + geom_bar()
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/arche_enrol_all_df_plot.png",width = 1920, height = 1080)
 ggarrange(arche_enrol_all_df_plot)
 dev.off() 
+
+#########
+
+## PLotting the archetype for all the learners
+
+arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
