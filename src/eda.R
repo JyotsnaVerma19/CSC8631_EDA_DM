@@ -636,11 +636,22 @@ dev.off()
 ## PLotting the archetype for all the learners
 
 arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype of all learners.png",width = 1920, height = 1080)
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_of_all_learners.png",width = 1920, height = 1080)
 ggarrange(arche_all_plot)
 dev.off() 
+#######################_____________________________________________________#########################
 
 
+arche_plot = ggplot() + 
+  geom_bar(data = all_archetype, mapping = aes(archetype,fill=archetype), stat = "count", group = 1) + 
+  geom_line(data = arche_participants, mapping = aes(archetype,  color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = arche_participants, mapping = aes(archetype, color = "fully participated") , stat = "count", group = 1, size = 3) +
+  theme(legend.key=element_blank(),
+        legend.box="vertical", text = element_text(size = 15)) +
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
+  
+  
 
 ########################################################__________________________#############################################3
 
@@ -678,4 +689,18 @@ dev.off()
 ggarrange(test_plot5, ggarrange(test_plot1,test_plot2,test_plot3,test_plot4))
 
 ######################___________________________________-######################################
+
+#### Country - 
+# creating a table of detected countries
+
+countries_df = data.frame(table(all_enrolments$detected_country))
+countries_df = countries_df[-c(1),]
+colnames(countries_df) = c("countries","number_of_learners")
+countries_df_sorted = arrange(countries_df, desc(number_of_learners))
+ggplot(data=countries_df_sorted, aes(x=countries, y=number_of_learners)) +
+  geom_bar(stat="identity")
+
+
+
+#####################______________________________####################
 
