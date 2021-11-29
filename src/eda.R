@@ -555,10 +555,6 @@ all_emp_area = data.frame(all_enrolments$employment_area[all_enrolments$employme
 colnames(all_emp_area) = "employment_area"
 all_emp_area_plot = ggplot(all_emp_area, aes(employment_area,fill=employment_area)) + geom_bar() + theme(axis.text.x = element_text(angle = 90))
 
-#arranging all the plots on a grid
-install.packages("gridExtra")
-library("gridExtra")
-
 
 
 layout = rbind(c(1,1),c(2,3),c(4,5))
@@ -568,6 +564,57 @@ dev.off()
 
 ggarrange(all_emp_area_plot, ggarrange(all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot))
 
+############################________________________________________________________________###############################################
+# Plotting learners based on different variables who fully participated in the course
+
+idx_enrol_fully_participated = which(all_enrolments$fully_participated_at != "")
+
+all_enrol_particiapted = all_enrolments[idx_enrol_fully_participated,]
+
+
+#Plotting gender of the learners for all the batches 
+
+all_gender_part = data.frame(all_enrol_particiapted$gender[all_enrol_particiapted$gender != "Unknown"])
+colnames(all_gender_part) = "gender"
+all_gender_part_plot = ggplot(all_gender_part, aes(gender,fill=gender)) + geom_bar()
+
+##Plotting age range of the learners for all the batches 
+
+all_age_range_part = data.frame(all_enrol_particiapted$age_range[all_enrol_particiapted$age_range != "Unknown"])
+colnames(all_age_range_part) = "age_range"
+all_age_range_part_plot = ggplot(all_age_range_part, aes(age_range,fill=age_range)) + geom_bar()
+
+
+##Plotting highest education level of the learners for all the batches 
+
+all_high_education_level_part = data.frame(all_enrol_particiapted$highest_education_level[all_enrol_particiapted$highest_education_level != "Unknown"])
+colnames(all_high_education_level_part) = "highest_education_level"
+all_high_education_level_part_plot = ggplot(all_high_education_level_part, aes(highest_education_level,fill=highest_education_level)) + geom_bar()
+
+
+##Plotting employment status of the learners for all the batches 
+
+all_emp_status_part = data.frame(all_enrol_particiapted$employment_status[all_enrol_particiapted$employment_status != "Unknown"])
+colnames(all_emp_status_part) = "employment_status"
+all_emp_status_part_plot = ggplot(all_emp_status_part, aes(employment_status,fill=employment_status)) + geom_bar()
+
+
+##Plotting employment area of the learners for all the batches 
+
+all_emp_area_part = data.frame(all_enrol_particiapted$employment_area[all_enrol_particiapted$employment_area != "Unknown"])
+colnames(all_emp_area_part) = "employment_area"
+all_emp_area_part_plot = ggplot(all_emp_area_part, aes(employment_area,fill=employment_area)) + geom_bar() + theme(axis.text.x = element_text(angle = 90))
+
+
+
+layout = rbind(c(1,1),c(2,3),c(4,5))
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/overview_of_learners_completed_course.png",width = 1920, height = 1080)
+grid.arrange(all_emp_area_part_plot, all_gender_part_plot,all_age_range_part_plot,all_high_education_level_part_plot,all_emp_status_part_plot, layout_matrix = layout)
+dev.off() 
+
+ggarrange(all_emp_area_part_plot, ggarrange(all_gender_part_plot,all_age_range_part_plot,all_high_education_level_part_plot,all_emp_status_part_plot))
+
+#####################################______________________________________________________________###########################################################
 
 # checking the archetype of the learners who completed the course
 # for first batch
@@ -589,3 +636,46 @@ dev.off()
 ## PLotting the archetype for all the learners
 
 arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype of all learners.png",width = 1920, height = 1080)
+ggarrange(arche_all_plot)
+dev.off() 
+
+
+
+########################################################__________________________#############################################3
+
+test_plot1 = ggplot() + 
+  geom_bar(data = all_gender, mapping = aes(gender,fill=gender), stat = "count", group = 1) + 
+  geom_line(data = all_gender_part, mapping = aes(gender) , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_gender_part, mapping = aes(gender, fill=gender) , stat = "count", group = 1, size = 3)
+
+test_plot2 = ggplot() + 
+  geom_bar(data = all_age_range, mapping = aes(age_range,fill=age_range), stat = "count", group = 1) + 
+  geom_line(data = all_age_range_part, mapping = aes(age_range) , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_age_range_part, mapping = aes(age_range, fill=age_range) , stat = "count", group = 1, size = 3)
+
+test_plot3 = ggplot() + 
+  geom_bar(data = all_high_education_level, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", group = 1) + 
+  geom_line(data = all_high_education_level_part, mapping = aes(highest_education_level) , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_high_education_level_part, mapping = aes(highest_education_level, fill=highest_education_level) , stat = "count", group = 1, size = 3)
+
+test_plot4 = ggplot() + 
+  geom_bar(data = all_emp_status, mapping = aes(employment_status,fill=employment_status), stat = "count", group = 1) + 
+  geom_line(data = all_emp_status_part, mapping = aes(employment_status) , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_emp_status_part, mapping = aes(employment_status, fill=employment_status) , stat = "count", group = 1, size = 3)
+
+test_plot5 = ggplot() + 
+  geom_bar(data = all_emp_area, mapping = aes(employment_area,fill=employment_area), stat = "count", group = 1) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
+  geom_line(data = all_emp_area_part, mapping = aes(employment_area) , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_emp_area_part, mapping = aes(employment_area, fill=employment_area) , stat = "count", group = 1, size = 3)
+
+lay = rbind(c(1,1),c(1,1),c(2,3),c(4,5))
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png",width = 1920, height = 1080)
+grid.arrange(test_plot5, test_plot1,test_plot2,test_plot3,test_plot4, layout_matrix = lay)
+dev.off() 
+
+ggarrange(test_plot5, ggarrange(test_plot1,test_plot2,test_plot3,test_plot4))
+
+######################___________________________________-######################################
+
