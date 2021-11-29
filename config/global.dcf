@@ -8,7 +8,7 @@ munging: TRUE
 logging: FALSE
 logging_level: INFO
 load_libraries: TRUE
-libraries: reshape2, plyr, tidyverse, stringr, lubridate,ggplot2,dplyr,forecast,knitr, janitor, ggpubr, gridExtra
+libraries: reshape2, plyr, tidyverse, stringr, lubridate,ggplot2,dplyr,forecast,knitr, janitor, ggpubr, gridExtra, wordcloud, RColorBrewer, wordcloud2, tm, webshot, htmlwidgets
 as_factors: FALSE
 data_tables: FALSE
 tables_type: tibble
