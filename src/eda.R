@@ -529,4 +529,44 @@ all_gender = data.frame(all_enrolments$gender[all_enrolments$gender != "Unknown"
 colnames(all_gender) = "gender"
 all_gender_plot = ggplot(all_gender, aes(gender,fill=gender)) + geom_bar()
 
-##Plotting gender of the learners for all the batches 
+##Plotting age range of the learners for all the batches 
+
+all_age_range = data.frame(all_enrolments$age_range[all_enrolments$age_range != "Unknown"])
+colnames(all_age_range) = "age_range"
+all_age_range_plot = ggplot(all_age_range, aes(age_range,fill=age_range)) + geom_bar()
+
+
+##Plotting highest education level of the learners for all the batches 
+
+all_high_education_level = data.frame(all_enrolments$highest_education_level[all_enrolments$highest_education_level != "Unknown"])
+colnames(all_high_education_level) = "highest_education_level"
+all_high_education_level_plot = ggplot(all_high_education_level, aes(highest_education_level,fill=highest_education_level)) + geom_bar()
+
+
+##Plotting employment status of the learners for all the batches 
+
+all_emp_status = data.frame(all_enrolments$employment_status[all_enrolments$employment_status != "Unknown"])
+colnames(all_emp_status) = "employment_status"
+all_emp_status_plot = ggplot(all_emp_status, aes(employment_status,fill=employment_status)) + geom_bar()
+
+
+##Plotting employment area of the learners for all the batches 
+
+all_emp_area = data.frame(all_enrolments$employment_area[all_enrolments$employment_area != "Unknown"])
+colnames(all_emp_area) = "employment_area"
+all_emp_area_plot = ggplot(all_emp_area, aes(employment_area,fill=employment_area)) + geom_bar() + theme(axis.text.x = element_text(angle = 90))
+
+#arranging all the plots on a grid
+install.packages("gridExtra")
+library("gridExtra")
+
+
+
+layout = rbind(c(1,1),c(2,3),c(4,5))
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/overview_of_enrolment_data_file.png",width = 1920, height = 1080)
+grid.arrange(all_emp_area_plot, all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot, layout_matrix = layout)
+dev.off() 
+
+ggarrange(all_emp_area_plot, ggarrange(all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot))
+
+
