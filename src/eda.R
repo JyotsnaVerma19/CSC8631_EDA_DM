@@ -650,7 +650,9 @@ arche_plot = ggplot() +
         legend.box="vertical", text = element_text(size = 15)) +
   scale_colour_manual(" ", values=c("fully participated" = "black")) +
   ylab("No. of learners")
-  
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_enrolled_Vs_completed.png",width = 1920, height = 1080)
+ggarrange(arche_plot)
+dev.off()  
   
 
 ########################################################__________________________#############################################3
@@ -700,7 +702,104 @@ countries_df_sorted = arrange(countries_df, desc(number_of_learners))
 ggplot(data=countries_df_sorted, aes(x=countries, y=number_of_learners)) +
   geom_bar(stat="identity")
 
+###### plotting the maximum no. of learners from top 10 countries
+
+top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_learners, fill = countries)) +
+  geom_col(color = "black") +
+  geom_text(aes(label = number_of_learners),
+            position = position_stack(vjust = 0.5)) +
+  coord_polar(theta = "y") +
+  guides(fill = guide_legend(title = "countries")) +
+  scale_fill_brewer(palette = "Pastel1") +
+  theme(text= element_text(size = 20))
+    #scale_y_continuous(breaks = countries_df_sorted[1:9,]$number_of_learners, labels = countries_df_sorted[1:9,]$countries)
+
+#######
+plot_countries = ggplot(data=countries_df_sorted[1:100,], aes(x=reorder(countries,-number_of_learners), y=number_of_learners, group=1)) +
+  geom_line(size = 1)+
+  geom_point(color = "red",size = 2) +
+  xlab("Countries") +
+  ylab("No. of learners") +
+  theme(text= element_text(size = 20), axis.text.x =  element_text(size = 12))
+
+###### saving the plots for learners from different countries
+country_layout = rbind(c(2,2),c(2,2), c(2,2),c(1,1),c(1,1),c(1,1))
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png",width = 1920, height = 1080)
+grid.arrange(plot_countries,top9_countries , layout_matrix = country_layout )
+dev.off() 
 
 
 #####################______________________________####################
 
+#Create a vector containing only the text
+
+text <- all_weekly_sentiment$reason
+
+# Create a corpus  
+docs <- Corpus(VectorSource(text))
+docs
+# STEP 2: Clean the text data
+docs <- docs %>%
+  tm_map(removeNumbers) %>%
+  tm_map(removePunctuation) %>%
+  tm_map(stripWhitespace)
+docs <- tm_map(docs, content_transformer(tolower))
+docs <- tm_map(docs, removeWords, stopwords("english"))
+
+# STEP 3: Create a document-term-matrix
+#What you want to do as a next step is to have a dataframe containing each word in your first column and their frequency in the second column.
+#This can be done by creating a document term matrix with the TermDocumentMatrix function from the tm package.
+
+dtm <- TermDocumentMatrix(docs) 
+matrix <- as.matrix(dtm) 
+words <- sort(rowSums(matrix),decreasing=TRUE) 
+df <- data.frame(word = names(words),freq=words)
+rownames(df) <- c(1:nrow(df))
+df <- df[-c(116,117,196),]
+
+
+# STEP 4: Generate the word cloud
+#set.seed(1234) # for reproducibility 
+#wordcloud(words = df$word, freq = df$freq, min.freq = 1,max.words=200, random.order=FALSE, rot.per=0.35,colors=brewer.pal(8, "Dark2"))
+weeklysentiment_analysis <- wordcloud2(data=df ,size=1.6, color='random-dark')
+
+# install webshot
+
+webshot::install_phantomjs()
+
+
+# save it in html
+
+saveWidget(weeklysentiment_analysis,"tmp.html",selfcontained = F)
+
+# and in png or pdf
+webshot("tmp.html","C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/weeklysentiment_analysis.png", delay = 15, vwidth = 1920, vheight=1080)
+
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/Weekly_Sentiment_analysis.png",width = 1920, height = 1080)
+grid.arrange(wordcloud_weekly_sentiment)
+dev.off() 
+
+
+###################______________________________________________############################
+
+### ANalysing all the leaving responses
+
+left_at_step = data.frame(t(data.frame(table(all_leaving_survey$last_completed_step))))
+left_at_step = left_at_step %>%
+  row_to_names(row_number = 1)
+#######33____________________################
+
+
+leaving_reason_plot = ggplot(data = all_leaving_survey, aes(leaving_reason, fill = leaving_reason)) + 
+           geom_bar()+
+           coord_polar()+
+  theme(text = element_text(size = 15))
+           
+
+
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/leaving_reason_plot.png",width = 1920, height = 1080)
+grid.arrange(leaving_reason_plot)
+dev.off() 
+
+###########___________________________ ########################
