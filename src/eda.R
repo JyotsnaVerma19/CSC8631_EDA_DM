@@ -570,3 +570,17 @@ dev.off()
 ggarrange(all_emp_area_plot, ggarrange(all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot))
 
 
+# checking the archetype of the learners who completed the course
+# for first batch
+idx_all_fully_participated = which(arche_enrol_all$fully_participated_at != "")
+idx_all_fully_participated
+
+arche_enrol_all_df = arche_enrol_all[idx_all_fully_participated,]
+arche_enrol_all_df = na.omit(arche_enrol_all_df)
+
+arche_participants = data.frame(arche_enrol_all_df$archetype)
+colnames(arche_participants) = "archetype"
+arche_enrol_all_df_plot = ggplot(arche_enrol_all_df, aes(archetype,fill=archetype)) + geom_bar() + coord_polar()
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/arche_enrol_all_df_plot.png",width = 1920, height = 1080)
+ggarrange(arche_enrol_all_df_plot)
+dev.off() 
