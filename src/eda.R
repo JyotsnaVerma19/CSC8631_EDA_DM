@@ -633,7 +633,7 @@ dev.off()
 
 #########
 
-## PLotting the archetype for all the learners
+## Plotting the archetype for all the learners
 
 arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_of_all_learners.png",width = 1920, height = 1080)
@@ -699,10 +699,31 @@ countries_df = data.frame(table(all_enrolments$detected_country))
 countries_df = countries_df[-c(1),]
 colnames(countries_df) = c("countries","number_of_learners")
 countries_df_sorted = arrange(countries_df, desc(number_of_learners))
-ggplot(data=countries_df_sorted, aes(x=countries, y=number_of_learners)) +
-  geom_bar(stat="identity")
 
-###### plotting the maximum no. of learners from top 10 countries
+##################_____________
+
+all_enrol_particiapted_df = all_enrol_particiapted[all_enrol_particiapted$detected_country != "--",]
+part_countries_df = data.frame(table(all_enrol_particiapted_df$detected_country))
+colnames(part_countries_df) = c("countries","number_of_learners")
+part_enrol_all <- merge(x= countries_df_sorted ,y=part_countries_df,  by = "countries", all.x=TRUE)
+colnames(part_enrol_all) = c("countries","enrolled","participated")
+part_enrol_all = arrange(part_enrol_all, desc(enrolled))
+
+part_enrol = normalize(part_enrol_all[,c(2,3)], method = "range", range = c(0,1))
+part_enrol = cbind(part_enrol, countries = part_enrol_all$countries)
+
+
+
+part_enrol_all = melt(part_enrol, id.vars = c('countries'))
+
+colnames(part_enrol_all) = c("country", "status", "value")
+part_enrol_all = arrange(part_enrol_all, desc(value))
+
+###############
+
+
+
+###### plotting the maximum no. of learners from top 9 countries
 
 top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_learners, fill = countries)) +
   geom_col(color = "black") +
@@ -714,13 +735,16 @@ top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_lea
   theme(text= element_text(size = 20))
     #scale_y_continuous(breaks = countries_df_sorted[1:9,]$number_of_learners, labels = countries_df_sorted[1:9,]$countries)
 
+######################
 #######
-plot_countries = ggplot(data=countries_df_sorted[1:100,], aes(x=reorder(countries,-number_of_learners), y=number_of_learners, group=1)) +
-  geom_line(size = 1)+
-  geom_point(color = "red",size = 2) +
-  xlab("Countries") +
-  ylab("No. of learners") +
-  theme(text= element_text(size = 20), axis.text.x =  element_text(size = 12))
+
+plot_countries = ggplot(data = part_enrol_all[1:100,], aes(x=reorder(country, -value), y= value, fill = status , group = status, color = status)) + 
+  geom_line() +
+  geom_point() + 
+  xlab("countries")
+  ylab("Normalized number of enrolments") +
+  theme(axis.text.x = element_text(angle = 45, hjust =1))
+
 
 ###### saving the plots for learners from different countries
 country_layout = rbind(c(2,2),c(2,2), c(2,2),c(1,1),c(1,1),c(1,1))
@@ -728,7 +752,7 @@ png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolmen
 grid.arrange(plot_countries,top9_countries , layout_matrix = country_layout )
 dev.off() 
 
-
+###################
 #####################______________________________####################
 
 #Create a vector containing only the text
@@ -794,7 +818,8 @@ left_at_step = left_at_step %>%
 leaving_reason_plot = ggplot(data = all_leaving_survey, aes(leaving_reason, fill = leaving_reason)) + 
            geom_bar()+
            coord_polar()+
-  theme(text = element_text(size = 15))
+  theme(text = element_text(size = 15)) +
+  scale_fill_brewer(palette = "Pastel1")
            
 
 
@@ -840,4 +865,18 @@ ggplot(data = all_devices, aes(x=title,y= value, fill = devices_used , group = d
 
 
 ############___________#############
-all_continents = all_video_stats %>% group_by(title) %>% summarize(console_devices = mean(console_device_percentage))
+all_continents = all_video_stats %>% group_by(title) %>% summarize(europe_views = mean(europe_views_percentage))
+all_continents$oceania_views = (all_video_stats %>% group_by(title) %>% summarize(oceania_views = mean(oceania_views_percentage)))$oceania_views
+all_continents$asia_views = (all_video_stats %>% group_by(title) %>% summarize(asia_views = mean(asia_views_percentage)))$asia_views
+all_continents$north_america_views = (all_video_stats %>% group_by(title) %>% summarize(north_america_views = mean(north_america_views_percentage)))$north_america_views
+all_continents$south_america_views = (all_video_stats %>% group_by(title) %>% summarize(south_america_views = mean(south_america_views_percentage)))$south_america_views
+all_continents$africa_views = (all_video_stats %>% group_by(title) %>% summarize(africa_views = mean(africa_views_percentage)))$africa_views
+
+all_continents_df <- as.data.frame(colMeans(all_continents[,2:ncol(all_continents)]))
+colnames(all_continents_df)[1] = c("view_percentage")
+
+
+ggplot(data = all_continents_df, aes(x=row.names(all_continents_df), y= view_percentage, fill = row.names(all_continents_df) , group = row.names(all_continents_df)))+
+  geom_bar(position="dodge", stat="identity") +
+  labs(fill = "Continents") +
+  xlab("continents")
