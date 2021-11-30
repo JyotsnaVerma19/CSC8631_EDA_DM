@@ -803,3 +803,41 @@ grid.arrange(leaving_reason_plot)
 dev.off() 
 
 ###########___________________________ ########################
+## ANlaysing the video stats dataset
+
+all_views = all_video_stats %>% group_by(title) %>% summarize(views = sum(total_views))
+all_views$captions = (all_video_stats %>% group_by(title) %>% summarize(captions = sum(total_caption_views)))$captions
+all_views$transcript = (all_video_stats %>% group_by(title) %>% summarize(transcript = sum(total_transcript_views)))$transcript
+all_views$hd_viewing = (all_video_stats %>% group_by(title) %>% summarize(hd_viewing = sum(viewed_hd)))$hd_viewing
+
+all_views = melt(all_views, id.vars = c('title'))
+colnames(all_views)[2] = c("video_stats")
+
+
+video_stats_views_plot = ggplot(data = all_views, aes(x=title,y= value, fill = video_stats , group = video_stats, color = video_stats)) + 
+  geom_line() +
+  geom_point() + 
+  ylab("Video stats") +
+  theme(axis.text.x = element_text(angle = 45, hjust =1))
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/video_stats_views_plot.png",width = 1920, height = 1080)
+grid.arrange(video_stats_views_plot)
+dev.off() 
+
+###############__________________________________________--#########################################
+
+###ANalysing the device  used.
+all_devices = all_video_stats %>% group_by(title) %>% summarize(console_devices = mean(console_device_percentage))
+all_devices$desktop_devices = (all_video_stats %>% group_by(title) %>% summarize(desktop_devices = mean(desktop_device_percentage)))$desktop_devices
+all_devices$mobile_devices = (all_video_stats %>% group_by(title) %>% summarize(mobile_devices = mean(mobile_device_percentage)))$mobile_devices
+all_devices$tv_devices = (all_video_stats %>% group_by(title) %>% summarize(tv_devices = mean(tv_device_percentage)))$tv_devices
+all_devices$tablet_devices = (all_video_stats %>% group_by(title) %>% summarize(tablet_devices = mean(tablet_device_percentage)))$tablet_devices
+
+all_devices = melt(all_devices, id.vars = c('title'))
+colnames(all_devices)[2] = c("devices_used")
+
+ggplot(data = all_devices, aes(x=title,y= value, fill = devices_used , group = devices_used, color = devices_used))+
+  geom_bar(position="dodge", stat="identity")
+
+
+############___________#############
+all_continents = all_video_stats %>% group_by(title) %>% summarize(console_devices = mean(console_device_percentage))
