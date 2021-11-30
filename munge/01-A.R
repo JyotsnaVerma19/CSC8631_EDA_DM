@@ -84,3 +84,4 @@ arche_enrol_all <- merge(x= all_enrolments ,y=all_archetype[,c(2,4)], by = "lear
 
 
 
+
