@@ -1,5 +1,30 @@
 #library('ProjectTemplate')
 #load.project()
+
+## Basic understanding of data
+#For batch 1:
+(dim(archetype_1))#checking the dimension of the archetype dataset
+(summary((archetype_1)))
+(dim(enrolment_1))
+(summary((enrolment_1)))
+(dim(leaving_survey_1))
+(summary((leaving_survey_1)))
+(dim(question_response_1))
+(summary((question_response_1)))
+(dim(step_activity_1))
+(summary((step_activity_1)))
+(dim(weekly_sentiment_1))
+(summary((weekly_sentiment_1)))
+colnames(enrolment_1)
+unique(enrolment_1$role)
+
+
+
+
+
+
+
+
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/test.png",width = 1920, height = 1080)
 ggplot(enrolment_1, aes(gender,fill=gender)) + geom_bar()
 dev.off()
@@ -96,7 +121,7 @@ learners_gender = b %>%
   geom_col(position = "dodge") 
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/gender_learners.png",width = 1920, height = 1080)
-ggarrange(learners_gender)
+grid.arrange(learners_gender)
 dev.off()
 
 # Education level
@@ -141,10 +166,8 @@ h7 = ggplot() +
   coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
 
 
-install.packages("ggpubr")
-library(ggpubr)
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/learners_edu_lvl.png",width = 1920, height = 1080)
-ggarrange(h1,h2,h3,h4,h5,h6,h7)
+grid.arrange(h1,h2,h3,h4,h5,h6,h7)
 dev.off()
 
 
@@ -153,7 +176,6 @@ dev.off()
 highest_education_level1 = data.frame(enrolment_1$highest_education_level[enrolment_1$highest_education_level != "Unknown"])
 colnames(highest_education_level1) = "highest_education_level"
 
-write.csv(fully_particiapted_df1,"C:/Users/Payal/Desktop/Future_Learn_EDA_DM/Sample/trial_participation.csv", row.names = FALSE)
 
 
 # Highest education level of ppl who finished the course
@@ -279,7 +301,7 @@ h7_fp = ggplot() +
 
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/participants_edu_lvl.png",width = 1920, height = 1080)
-ggarrange(h1_fp,h2_fp,h3_fp,h4_fp,h5_fp,h6_fp,h7_fp)
+grid.arrange(h1_fp,h2_fp,h3_fp,h4_fp,h5_fp,h6_fp,h7_fp)
 dev.off()
 
 
@@ -328,7 +350,7 @@ emp_stat7 = ggplot() +
   coord_cartesian(ylim = c(0,750))+ theme(axis.text.x = element_text(angle = 90))
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/employment_Status_learners.png",width = 1920, height = 1080)
-ggarrange(emp_stat1,emp_stat2,emp_stat3,emp_stat4,emp_stat5,emp_stat6,emp_stat7)
+grid.arrange(emp_stat1,emp_stat2,emp_stat3,emp_stat4,emp_stat5,emp_stat6,emp_stat7)
 dev.off()
 
 
@@ -373,7 +395,7 @@ emp_area7 = ggplot() +
   coord_cartesian(ylim = c(0,500))+ theme(axis.text.x = element_text(angle = 90))
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/employment_area_learners.png",width = 1920, height = 1080)
-ggarrange(emp_area1,emp_area2,emp_area3,emp_area4,emp_area5,emp_area6,emp_area7)
+grid.arrange(emp_area1,emp_area2,emp_area3,emp_area4,emp_area5,emp_area6,emp_area7)
 dev.off()
 
 
@@ -402,8 +424,7 @@ ggplot(dftrial, aes(employment_status, ..count..)) + geom_bar(aes(fill = gender)
 
 
 ### overall view of employment area of the learners who are interested in the course .. (7 batches)
-install.packages("janitor")
-library(janitor)
+
 emp_area_count1 = data.frame(t(data.frame(table(employment_area_1))))
 emp_area_count1 = emp_area_count1 %>%
   row_to_names(row_number = 1)
@@ -452,7 +473,7 @@ emp_area_plot = emp_area_count %>%
   geom_col(position = "dodge" ) 
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/emp_area_plot.png",width = 1920, height = 1080)
-ggarrange(emp_area_plot)
+grid.arrange(emp_area_plot)
 dev.off()
 
 #####  Checking the number of learners enrolled in each batch
@@ -508,8 +529,7 @@ enrollred_vs_completed %>% select(order(colnames(.)))
 
 
 
-# Plotting the no of learners over the years for all batches
-
+# Plotting the no of learners over the years for all batches , the ones who participated vs the ones who completed the course
 
 enrollred_vs_completed = melt(enrollred_vs_completed, id.vars = c('Batch'))
 colnames(enrollred_vs_completed) = c("Batch","Status", "Count")
@@ -519,7 +539,7 @@ enrol_vs_comp_plot = ggplot(enrollred_vs_completed, aes(x=Batch, y=Count, group=
   ylab("No. of learners")
 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png",width = 1920, height = 1080)
-ggarrange(enrol_vs_comp_plot)
+grid.arrange(enrol_vs_comp_plot)
 dev.off()  
 
 #Plotting gender of the learners for all the batches 
@@ -562,7 +582,7 @@ png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/overview_of_enrolmen
 grid.arrange(all_emp_area_plot, all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot, layout_matrix = layout)
 dev.off() 
 
-ggarrange(all_emp_area_plot, ggarrange(all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot))
+#ggarrange(all_emp_area_plot, ggarrange(all_gender_plot,all_age_range_plot,all_high_education_level_plot,all_emp_status_plot))
 
 ############################________________________________________________________________###############################################
 # Plotting learners based on different variables who fully participated in the course
@@ -612,7 +632,7 @@ png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/overview_of_learners
 grid.arrange(all_emp_area_part_plot, all_gender_part_plot,all_age_range_part_plot,all_high_education_level_part_plot,all_emp_status_part_plot, layout_matrix = layout)
 dev.off() 
 
-ggarrange(all_emp_area_part_plot, ggarrange(all_gender_part_plot,all_age_range_part_plot,all_high_education_level_part_plot,all_emp_status_part_plot))
+# ggarrange(all_emp_area_part_plot, ggarrange(all_gender_part_plot,all_age_range_part_plot,all_high_education_level_part_plot,all_emp_status_part_plot))
 
 #####################################______________________________________________________________###########################################################
 
@@ -628,7 +648,7 @@ arche_participants = data.frame(arche_enrol_all_df$archetype)
 colnames(arche_participants) = "archetype"
 arche_enrol_all_df_plot = ggplot(arche_enrol_all_df, aes(archetype,fill=archetype)) + geom_bar()
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/arche_enrol_all_df_plot.png",width = 1920, height = 1080)
-ggarrange(arche_enrol_all_df_plot)
+grid.arrange(arche_enrol_all_df_plot)
 dev.off() 
 
 #########
@@ -637,7 +657,7 @@ dev.off()
 
 arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_of_all_learners.png",width = 1920, height = 1080)
-ggarrange(arche_all_plot)
+grid.arrange(arche_all_plot)
 dev.off() 
 #######################_____________________________________________________#########################
 
@@ -651,7 +671,7 @@ arche_plot = ggplot() +
   scale_colour_manual(" ", values=c("fully participated" = "black")) +
   ylab("No. of learners")
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_enrolled_Vs_completed.png",width = 1920, height = 1080)
-ggarrange(arche_plot)
+grid.arrange(arche_plot)
 dev.off()  
   
 
@@ -659,36 +679,45 @@ dev.off()
 
 test_plot1 = ggplot() + 
   geom_bar(data = all_gender, mapping = aes(gender,fill=gender), stat = "count", group = 1) + 
-  geom_line(data = all_gender_part, mapping = aes(gender) , stat = "count", group = 1 ,size = 1) +
-  geom_point(data = all_gender_part, mapping = aes(gender, fill=gender) , stat = "count", group = 1, size = 3)
+  geom_line(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1, size = 3)+
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
 
 test_plot2 = ggplot() + 
   geom_bar(data = all_age_range, mapping = aes(age_range,fill=age_range), stat = "count", group = 1) + 
-  geom_line(data = all_age_range_part, mapping = aes(age_range) , stat = "count", group = 1 ,size = 1) +
-  geom_point(data = all_age_range_part, mapping = aes(age_range, fill=age_range) , stat = "count", group = 1, size = 3)
+  geom_line(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1, size = 3)+
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
 
 test_plot3 = ggplot() + 
   geom_bar(data = all_high_education_level, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", group = 1) + 
-  geom_line(data = all_high_education_level_part, mapping = aes(highest_education_level) , stat = "count", group = 1 ,size = 1) +
-  geom_point(data = all_high_education_level_part, mapping = aes(highest_education_level, fill=highest_education_level) , stat = "count", group = 1, size = 3)
+  geom_line(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1, size = 3)+
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
 
 test_plot4 = ggplot() + 
   geom_bar(data = all_emp_status, mapping = aes(employment_status,fill=employment_status), stat = "count", group = 1) + 
-  geom_line(data = all_emp_status_part, mapping = aes(employment_status) , stat = "count", group = 1 ,size = 1) +
-  geom_point(data = all_emp_status_part, mapping = aes(employment_status, fill=employment_status) , stat = "count", group = 1, size = 3)
+  geom_line(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1, size = 3)+
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
 
 test_plot5 = ggplot() + 
   geom_bar(data = all_emp_area, mapping = aes(employment_area,fill=employment_area), stat = "count", group = 1) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
-  geom_line(data = all_emp_area_part, mapping = aes(employment_area) , stat = "count", group = 1 ,size = 1) +
-  geom_point(data = all_emp_area_part, mapping = aes(employment_area, fill=employment_area) , stat = "count", group = 1, size = 3)
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15),axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
+  geom_line(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
+  geom_point(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1, size = 3) +
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
 
 lay = rbind(c(1,1),c(1,1),c(2,3),c(4,5))
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png",width = 1920, height = 1080)
 grid.arrange(test_plot5, test_plot1,test_plot2,test_plot3,test_plot4, layout_matrix = lay)
 dev.off() 
 
-ggarrange(test_plot5, ggarrange(test_plot1,test_plot2,test_plot3,test_plot4))
+# ggarrange(test_plot5, ggarrange(test_plot1,test_plot2,test_plot3,test_plot4))
 
 ######################___________________________________-######################################
 
@@ -753,7 +782,7 @@ grid.arrange(plot_countries,top9_countries , layout_matrix = country_layout )
 dev.off() 
 
 ###################
-#####################______________________________####################
+#####################_____creating a wordcloud for sentiment analysis_________________________####################
 
 #Create a vector containing only the text
 
@@ -800,9 +829,9 @@ saveWidget(weeklysentiment_analysis,"tmp.html",selfcontained = F)
 webshot("tmp.html","C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/weeklysentiment_analysis.png", delay = 15, vwidth = 1920, vheight=1080)
 
 
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/Weekly_Sentiment_analysis.png",width = 1920, height = 1080)
-grid.arrange(wordcloud_weekly_sentiment)
-dev.off() 
+#png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/Weekly_Sentiment_analysis.png",width = 1920, height = 1080)
+#grid.arrange(wordcloud_weekly_sentiment)
+#dev.off() 
 
 
 ###################______________________________________________############################
@@ -857,12 +886,29 @@ all_devices$mobile_devices = (all_video_stats %>% group_by(title) %>% summarize(
 all_devices$tv_devices = (all_video_stats %>% group_by(title) %>% summarize(tv_devices = mean(tv_device_percentage)))$tv_devices
 all_devices$tablet_devices = (all_video_stats %>% group_by(title) %>% summarize(tablet_devices = mean(tablet_device_percentage)))$tablet_devices
 
-all_devices = melt(all_devices, id.vars = c('title'))
-colnames(all_devices)[2] = c("devices_used")
+all_devices_df <- as.data.frame(colMeans(all_devices[,2:ncol(all_devices)]))
+colnames(all_devices_df)[1] = c("devices_used")
 
-ggplot(data = all_devices, aes(x=title,y= value, fill = devices_used , group = devices_used, color = devices_used))+
-  geom_bar(position="dodge", stat="identity")
+devices_used_plot1 = ggplot(data = all_devices_df, aes(x=row.names(all_devices_df), y= devices_used, fill = row.names(all_devices_df) , group = row.names(all_devices_df)))+
+  geom_bar(position="dodge", stat="identity") +
+  labs(fill = "Devices used") +
+  xlab("Devices used") + 
+  scale_fill_brewer(palette = "Pastel1") 
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/devices_used_plot1.png",width = 1920, height = 1080)
+grid.arrange(devices_used_plot1)
+dev.off() 
 
+#all_devices = melt(all_devices, id.vars = c('title'))
+#colnames(all_devices)[2] = c("devices_used")
+
+
+#devices_used_plot = ggplot(data = all_devices, aes(x=title,y= value, fill = devices_used , group = devices_used, color = devices_used))+
+ # geom_bar(position="dodge", stat="identity") +
+ # labs(fill = "Devices used") +
+ # xlab("Devices used")
+#png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/devices_used_plot1.png",width = 1920, height = 1080)
+#grid.arrange(devices_used_plot)
+#dev.off() 
 
 ############___________#############
 all_continents = all_video_stats %>% group_by(title) %>% summarize(europe_views = mean(europe_views_percentage))
@@ -876,7 +922,11 @@ all_continents_df <- as.data.frame(colMeans(all_continents[,2:ncol(all_continent
 colnames(all_continents_df)[1] = c("view_percentage")
 
 
-ggplot(data = all_continents_df, aes(x=row.names(all_continents_df), y= view_percentage, fill = row.names(all_continents_df) , group = row.names(all_continents_df)))+
+continent_plot = ggplot(data = all_continents_df, aes(x=row.names(all_continents_df), y= view_percentage, fill = row.names(all_continents_df) , group = row.names(all_continents_df)))+
   geom_bar(position="dodge", stat="identity") +
   labs(fill = "Continents") +
-  xlab("continents")
+  xlab("continents")+
+  scale_fill_brewer(palette = "YlGnBu")
+png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/continent_plot.png",width = 1920, height = 1080)
+grid.arrange(continent_plot)
+dev.off()
