@@ -16,7 +16,7 @@ load.project()
 ```
 
 ```{r EDA, include = FALSE}
-source("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/src/eda.R")
+source("./src/eda.R")
 ```
 
 **Introduction - ** 
@@ -90,7 +90,8 @@ Fig 1.  this gives the trend of all the learners from all the 7 batches who enro
 
 
 ```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled vs who completed across all batches"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
+plot(enrol_vs_comp_plot)
 ```
 
 Here we can see highest number of learners enrolling in the first batch and then the no. Of participants decreases significantly.  We can see that there is an increase in the number of participants for the 4th batch but after that it has shown a decreasing trend. We observe that there is significant difference in the number of learners who have enrolled and the ones who have completed the course. This can be analyzed further with leaving survey response dataset which contains the reason for participants leaving the course. 
@@ -99,27 +100,27 @@ Here we can see highest number of learners enrolling in the first batch and then
 Fig 2. gives a visual analysis of the leaving response by the learners. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Leaving response of the learners"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/leaving_reason_plot.png")
+```{r, echo = FALSE,out.width="100%", fig.width = 12, fig.height=5, fig.cap="Leaving response of the learners"}
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/leaving_reason_plot.png")
+plot(leaving_reason_plot)
 ```
 
 
 This shows that most of the learners who left the course have mentioned the reason of not having enough time. The reason about course requiring more time than expected is also chosen by a lot of learners, which depicts the same reason of learners struggling with time. Here we can further check what kind of learneres are involved and how can this issue be resolved.
 
-
 Now, here fig 3 shows the Combined overview of learners who enrolled for the course and the ones who fully participated in the program (purchased the upgraded course certificates). 
 For this we will be using our merged enrolments dataset from all the seven batches.
-
-
-```{r, echo = FALSE,out.width="100%", fig.cap="Enrolled and fully participated over different variables"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png")
-```
-
 
 Now this graph, fig 3 shows the different characteristics of the learners who enrolled and the learners who fully participated in the course, i.e., they completed the course and purchased the course certificate.
 
 
 Here when we see the employment area of the learners, we see that people from various domains have enrolled for the course but we can see that most of the learners are from IT and Information Services background and thus they are much interested in the course. The second dominating employment area is Teaching and education. May be there is a possibility that learners from these areas are pursuing this course for career advancements in their field. The line graph represents the learners who have fully participated (completed the course, i.e, that is purchased the upgraded course certificates). Here we observe that they mostly follow the same trend as enrolments in this case. We notice that from the employment area, Recruitment and PR, none of the learners have completed the course. This can be further checked and can be a future scope of this project to see why this particular category doesn’t have any learner who completed the course. 
+
+
+```{r, echo = FALSE,out.width="100%", fig.hight = 9, fig.width = 16, fig.cap="Enrolled and fully participated over different variables"}
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png")
+plot(completed_vs_enrolled)
+```
 
 
 The course offered, that is, Cyber Security (Cyber Security: Safety at home, online, in Life) teaches about the cyber threats and the security measures to be followed and is kind of related to the IT domain-based course, so we can see that most of the learners are from that area and thus are our target audience. Now, when we are aiming the other group of learners, despite the course (as seen from the modules and the topics) explains about the basic cyber safety rules that can be implemented in daily lives, people from other backgrounds tend to be skeptical about the course thinking that it might be on the very technical side and thus not enrolling for the same. In this case we can focus on tailoring our course in a way that it's understandable and approachable from learners from varied backgrounds. One way can be introducing this course in two levels as 1) Beginners and 2) Advanced. With this there is a possibility that learners from different background will now be tempted and will look forward to joining the Beginner level of the course to get familiar with the topic and if they build a foundation, they will be interested in enrolling for the next level of the course to get the knowledge of the topic on whole. This can increase the reach and customer base for our business. There will be a tradeoff with effort and timing but it can be compensated with the profit made. 
@@ -137,11 +138,12 @@ Talking about the gender we can’t say it is a very significant factor in analy
 
 **Analysing the Archetype of the learners to see how people intend to use this course for **
 
-For this analysis we are using our merged data from enrolment and archetype dataset.Although we don't have archetype for batch 1 and batch 2, but here we are merging all the available data that we have and then producing a broad overview of our analysis.
+For this analysis we are using our merged data from enrolment and archetype dataset.Although we don't have archetype for batch 1 and batch 2, but here we are joining(left join) all the available data that we have and then producing a broad overview of our analysis.
 
 
 ```{r, echo = FALSE,out.width="100%", fig.cap="Archetype of the learners enrolled"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_enrolled_Vs_completed.png")
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_enrolled_Vs_completed.png")
+plot(arche_plot)
 ```
 
 
@@ -163,10 +165,10 @@ For this we will be using the merged file from all the seven batches of the week
 The exploratory textual analysis of the weekly sentiment's dataset is done by word cloud. It provides an excellent way to analyze the text data through visualization and helps to find important words that can help in extracting insights from the data through which we can communicate the most salient points in the reporting. For this a vector is created containing only the text and then the text data is loaded as a corpus. Then the data was cleaned by removing the special characters, numbers or punctuation from the text, as well as removing common stop words and stripping the white spaces. Then a data frame is created containing each word in the first column and their frequency in the second column which was used to create our desired visualization.
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Weekly feedback about the course"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/weeklysentiment_analysis.png")
+```{r, echo = FALSE, out.width="100%", fig.height=5, fig.width=5 ,fig.cap="Weekly feedback about the course", warning=FALSE}
+# knitr::include_graphics("./graphs/weeklysentiment_analysis.png")
+wordcloud(words = df$word, freq = df$freq, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2"))
 ```
-
 
 Now, when we see the weekly sentiment of the learners, in fig 5 , we mostly have positive responses.
 So we can say that learners who fully participated in the course , found the the contents positive and helpful and are happy with the course. As analysed above we can infer that, as we see most of the learners are from IT and Information services so there is a possibility that they will feel familiar with the course and are satisfied with the content. Here we can try streamlining our course in a way that it would be helpful for learners from different backgrounds and domains to increase our reach to diverse fields of learners and adequately meet their requirements and expectations from the course as well.
@@ -178,7 +180,8 @@ We can analyse this on the basis of continents and further from the countries.
 For carrying out analysis for the continents for maximum number of course videos watched by the learners, which in a way shows the maximum participation from the continents, we used the merged video_stats dataset from all the batches.
 
 ```{r, echo = FALSE,out.width="100%", fig.cap="Learners from all the continents"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/continent_plot.png")
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/continent_plot.png")
+plot(continent_plot)
 ```
 
 Here we observe that view percentage from all the continents rank in the order from highest to lowest starting with Europe, Asia, North America, Africa,Oceania and South America. We see that we have no views from the Antarctica. This is because we know that Antarctica is the only continent with no permanent human habitation. 
@@ -186,12 +189,13 @@ Here we observe that view percentage from all the continents rank in the order f
 Now we will check the countries from where most of the learners enrolled for the course from the all_enrolments dataset (here as discussed earlier we will consider the detected country column)
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Learners from the countries across the world"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png")
+```{r, echo = FALSE,out.width="100%", fig.height=9, fig.width=16, fig.cap="Learners from the countries across the world"}
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png")
+plot(countrywise_enrolments)
 ```
 
 
-Here we see that the enrolments from the top 10 countries follow the trend of the learners enrolled from respective continents. This tells us that our data is reliable.
+Here we see that the enrolments from the top 10 countries follow the trend of the learners enrolled from respective continents. This tells us that our analysis is reliable.
 Here for example we see, Great Britain has the highest number of enrolments followed by India and the US which belongs to the top 3 continents ranked.
 
 Here for concentrating on capturing more learners , we analyse which part of the world attracts most of the learners and we will try to strengthen the customer base in those areas more, plus try on tailoring the course for the area from where the response is not satisfactory to draw learners from those areas as well.
@@ -226,12 +230,13 @@ Fig 8. gives the number of devices udes for watching the video modules of the co
 
 
 ```{r, echo = FALSE,out.width="100%", fig.cap="Devices Used"}
-knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/devices_used_plot1.png")
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/devices_used_plot1.png")
+plot(devices_used_plot1)
 ```
 
 
 
-Here we see that most of the learners prefer watching the content on desktop than on any other device. We can optimize the User Interface for the mobile and tablet devices as well, so that learners can access the content easily at anytime or anyplace (as mobiles and tablets are handy ) and thus there are chances that we may see an increase in the rate of learners who can fully participate. Because if they can access the course at ease of their hand at any point of time then there is a possibility that they will tend finish the course (as stated earlier learners complained that they don't fully participate in the course and leave it midway as they don't have enough time). So, if its handy, the learners might not feel obligated to access the course from their study/work space, rather there are chances that they will tend to watch at any point of time as it will be accessible easily. This will upgrade and provide a better learning platform.
+Here we see that most of the learners prefer watching the content on desktop than on any other device. So the interface of the site must be maintained for the desktop version and time to time upgradations should be done. We can optimize the User Interface for the mobile and tablet devices as well, so that learners can access the content easily at anytime or anyplace (as mobiles and tablets are handy ) and thus there are chances that we may see an increase in the rate of learners who can fully participate. Because if they can access the course at ease of their hand at any point of time then there is a possibility that they will tend finish the course (as stated earlier learners complained that they don't fully participate in the course and leave it midway as they don't have enough time). So, if its handy, the learners might not feel obligated to access the course from their study/work space, rather there are chances that they will tend to watch at any point of time as it will be accessible easily. This will upgrade and provide a better learning platform.
 
 Here we can see , almost no one use the console or TV device to access the course. But keeping in mind that the data is from 3 years ago, and now a days a lot of people use smart TV , so keeping the future scope in mind, the company can focus on making the UI of TV device user friendly too. 
 
