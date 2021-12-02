@@ -683,6 +683,7 @@ test_plot1 = ggplot() +
   geom_point(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1, size = 3)+
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
   scale_colour_manual(" ", values=c("fully participated" = "black"))
+  
 
 test_plot2 = ggplot() + 
   geom_bar(data = all_age_range, mapping = aes(age_range,fill=age_range), stat = "count", group = 1) + 
@@ -710,7 +711,7 @@ test_plot5 = ggplot() +
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15),axis.text.x = element_text(angle = 45, hjust = 1, size = 10)) +
   geom_line(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1, size = 3) +
-  scale_colour_manual(" ", values=c("fully participated" = "black"))
+  scale_colour_manual(" ", values=c("fully participated" = "black")) 
 
 lay = rbind(c(1,1),c(1,1),c(2,3),c(4,5))
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png",width = 1920, height = 1080)
@@ -818,7 +819,7 @@ weeklysentiment_analysis <- wordcloud2(data=df ,size=1.6, color='random-dark')
 
 # install webshot
 
-webshot::install_phantomjs()
+webshot::install_phantomjs(force = TRUE)
 
 
 # save it in html
@@ -848,7 +849,7 @@ leaving_reason_plot = ggplot(data = all_leaving_survey, aes(leaving_reason, fill
            geom_bar()+
            coord_polar()+
   theme(text = element_text(size = 15)) +
-  scale_fill_brewer(palette = "Pastel1")
+  scale_fill_brewer(palette = "YlGnBu")
            
 
 
@@ -893,7 +894,7 @@ devices_used_plot1 = ggplot(data = all_devices_df, aes(x=row.names(all_devices_d
   geom_bar(position="dodge", stat="identity") +
   labs(fill = "Devices used") +
   xlab("Devices used") + 
-  scale_fill_brewer(palette = "Pastel1") 
+  scale_fill_brewer(palette = "YlGnBu") 
 png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/devices_used_plot1.png",width = 1920, height = 1080)
 grid.arrange(devices_used_plot1)
 dev.off() 
@@ -917,6 +918,7 @@ all_continents$asia_views = (all_video_stats %>% group_by(title) %>% summarize(a
 all_continents$north_america_views = (all_video_stats %>% group_by(title) %>% summarize(north_america_views = mean(north_america_views_percentage)))$north_america_views
 all_continents$south_america_views = (all_video_stats %>% group_by(title) %>% summarize(south_america_views = mean(south_america_views_percentage)))$south_america_views
 all_continents$africa_views = (all_video_stats %>% group_by(title) %>% summarize(africa_views = mean(africa_views_percentage)))$africa_views
+all_continents$antarctica_views = (all_video_stats %>% group_by(title) %>% summarize(antarctica_views = mean(antarctica_views_percentage)))$antarctica_views
 
 all_continents_df <- as.data.frame(colMeans(all_continents[,2:ncol(all_continents)]))
 colnames(all_continents_df)[1] = c("view_percentage")
