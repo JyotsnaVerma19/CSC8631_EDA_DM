@@ -201,6 +201,8 @@ Here we observe that view percentage from all the continents rank in the order f
 
 Now we will check the countries from where most of the learners enrolled for the course from the all_enrolments dataset (here as discussed earlier we will consider the detected country column)
 
+Here for this analysis the count of each country was stored in a column. Now to compare the enrolments and the fully participated learners from each country, the data was normalized because number of learners enrolled were significantly more than the number of learners who fully participated in the course. So to plot on similar axis, noalization was needed.
+
 
 ```{r, echo = FALSE,out.width="100%", fig.height=9, fig.width=16, fig.cap="Learners from the countries across the world"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png")
@@ -256,7 +258,7 @@ Here we can see , almost no one use the console (very negligible amount) or TV d
 
 ## Final Recommendations and Conclusion :
 
-We observe that most of the details about the learners enrolled are unknown. There is a possibility that learners don't provide their details because of some privacy issues or lack of knowledge about how their data will be used. Here the course provider should put put in place the clear ethical policies and code of practices about how the student data will be used in analytics. This policies should address student privacy, security of data and the consent.
+We observe that most of the details about the learners enrolled are unknown. There is a possibility that learners don't provide their details because of some privacy issues or lack of knowledge about how their data will be used. Here the course provider should put in place the clear ethical policies and code of practices about how the student data will be used in analytics. These policies should address student privacy, security of data and the consent.
 We can focus on students from a particular background...so and so..provide a gist of conclusion from both recommendations
 
 

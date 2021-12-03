@@ -297,7 +297,7 @@ colnames(high_edu_lvl7) = "highest_education_level"
 # geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
-
+# checking the employment status from all batches
 
 
 employment_status_1 = data.frame(enrolment_1$employment_status[enrolment_1$employment_status != "Unknown"])
@@ -316,7 +316,7 @@ employment_status_7 = data.frame(enrolment_7$employment_status[enrolment_7$emplo
 colnames(employment_status_7) = "employment_status"
 
 
-
+# checking the employment area of all the learners
 
 
 employment_area_1 = data.frame(enrolment_1$employment_area[enrolment_1$employment_area != "Unknown"])
@@ -336,16 +336,16 @@ colnames(employment_area_7) = "employment_area"
 
 
 
-
+# creating dataframe for detected countries from batch 1
 
 countries_df1 = data.frame(table(enrolment_1$detected_country))
-countries_df1
-plot(countries_df1)
-points(countries_df1)
+
 
 
 
 dftrial <- select(enrolment_1,gender, employment_status)
+
+### overall view of employment area of the learners who are interested in the course .. (for all 7 batches)
 
 
 emp_area_count1 = data.frame(t(data.frame(table(employment_area_1))))
@@ -391,10 +391,7 @@ emp_area_count = cbind(emp_area_count, Batch = c("Batch 1", "Batch 2","Batch 3",
 row.names(emp_area_count) = NULL
 
 
-
-
-
-
+#####  Checking the number of learners enrolled in each batch
 
 dim_enrol1 = data.frame(rows = dim(enrolment_1)[1])
 dim_enrol1
@@ -418,7 +415,7 @@ dim_enrol_df
 
 
 
-# checking the nuber of learners who fully participated in the course
+# checking the number of learners who fully participated in the course
 
 
 dim_participated_1 = data.frame(rows = dim(fully_particiapted_df1)[1])
