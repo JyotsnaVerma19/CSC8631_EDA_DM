@@ -23,3 +23,6 @@ learning experience
 3. Set working directory by using the command setwd("path/where/you/downloaded/the/project/file") or you can simply click on sessions tab present in the top menu bar then go to set working directory then choose directory (Session > Set Working Directory > Choose directory).
 Open ./reports/Reports.rmd and run all the chunks by clicking on Run > Run All button in Rstudio.
 To generate the pdf report click on knit or knit to pdf.
+
+## Accessing Critical reflection Report
+Go to ./reports/ folder and find the Critical_Reflection_Report.pdf
