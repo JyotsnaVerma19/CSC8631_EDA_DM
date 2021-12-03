@@ -1,6 +1,6 @@
 ---
 title: "Exploratory Data Analysis"
-author: "Jyotsna Verma"
+author: "Jyotsna Verma (C210431782)"
 date: "12/11/2021"
 output: pdf_document
 ---
@@ -286,4 +286,3 @@ Here we must focus on retaining our loyal customers(the learners) as well as exp
 - https://www.policyconnect.org.uk/research/report-bricks-clicks-potential-data-and-analytics-higher-education
 - https://www.classcentral.com/report/what-kind-of-online-learner-are-you/
 - https://towardsdatascience.com/create-a-word-cloud-with-r-bde3e7422e8a
-- 

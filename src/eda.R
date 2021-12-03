@@ -402,8 +402,8 @@ leaving_reason_plot = ggplot(data = leaving_reason_count, aes(x = leaving_reason
            xlab("")+
            ylab("")+
   labs("Leaving Reason") +
-  scale_fill_brewer(palette = "Set3")
-           #theme(text = element_text(size = 20))
+  scale_fill_brewer(palette = "Set3") 
+           #theme(text = element_text(size = 15))
            
 
 
@@ -436,7 +436,7 @@ devices_used_plot1 = ggplot(data = all_devices_df, aes(x=row.names(all_devices_d
   labs(fill = "Devices used") +
   xlab("Devices used") + 
   ylab("% of learners using the device") +
-  theme(axis.text.x = element_text(angle = 45, hjust =1), text = element_text(size = 20)) +
+  theme(axis.text.x = element_text(angle = 45, hjust =1)) +
   scale_fill_brewer(palette = "Set2") 
 
 png(file="./graphs/devices_used_plot1.png",width = 1920, height = 1080)
