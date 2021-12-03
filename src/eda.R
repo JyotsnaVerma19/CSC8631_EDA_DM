@@ -95,7 +95,7 @@ h7_fp = ggplot() +
 
 edu_lvl_fp_plot = grid.arrange(h1_fp,h2_fp,h3_fp,h4_fp,h5_fp,h6_fp,h7_fp)
 
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/participants_edu_lvl.png",width = 1920, height = 1080)
+png(file="./graphs/participants_edu_lvl.png",width = 1920, height = 1080)
 grid.arrange(h1_fp,h2_fp,h3_fp,h4_fp,h5_fp,h6_fp,h7_fp)
 dev.off()
 
@@ -271,7 +271,7 @@ dev.off()
 ## Plotting the archetype for all the learners
 
 arche_all_plot = ggplot(all_archetype, aes(archetype,fill=archetype)) + geom_bar()
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_of_all_learners.png",width = 1920, height = 1080)
+png(file="./graphs/archetype_of_all_learners.png",width = 1920, height = 1080)
 grid.arrange(arche_all_plot)
 dev.off()
 
@@ -299,8 +299,8 @@ test_plot1 = ggplot() +
   geom_line(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1, size = 3)+
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
-  scale_colour_manual(" ", values=c("fully participated" = "black"))+
-  scale_fill_brewer(palette = "Pastel1")
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
+  #scale_fill_brewer(palette = "Pastel1")
   
 
 test_plot2 = ggplot() + 
@@ -308,24 +308,24 @@ test_plot2 = ggplot() +
   geom_line(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1, size = 3)+
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) +
-  scale_fill_brewer(palette = "Pastel1")
+  scale_colour_manual(" ", values=c("fully participated" = "black")) 
+ #+ scale_fill_brewer(palette = "Pastel1")
 
 test_plot3 = ggplot() + 
   geom_bar(data = all_high_education_level, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", group = 1) + 
   geom_line(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1, size = 3)+
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) +
-  scale_fill_brewer(palette = "Pastel1")
+  scale_colour_manual(" ", values=c("fully participated" = "black"))
+ # scale_fill_brewer(palette = "Pastel1")
 
 test_plot4 = ggplot() + 
   geom_bar(data = all_emp_status, mapping = aes(employment_status,fill=employment_status), stat = "count", group = 1) + 
   geom_line(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1, size = 3)+
   theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) +
-  scale_fill_brewer(palette = "Pastel1")
+  scale_colour_manual(" ", values=c("fully participated" = "black")) 
+  #scale_fill_brewer(palette = "Pastel1")
 
 mycolors = c(brewer.pal(name="Pastel1", n = 9), brewer.pal(name="Pastel2", n = 8))
 test_plot5 = ggplot() + 
@@ -355,10 +355,10 @@ top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_lea
   geom_col() +
   geom_text(aes(label = number_of_learners),
             position = position_stack(vjust = 0.5)) +
+  scale_fill_brewer(palette = "Set3") +
   coord_polar(theta = "y") +
   guides(fill = guide_legend(title = "countries")) +
-  scale_fill_brewer(palette = "Pastel1") +
-  theme(text= element_text(size = 20))
+  theme(text= element_text(size = 20)) 
     #scale_y_continuous(breaks = countries_df_sorted[1:9,]$number_of_learners, labels = countries_df_sorted[1:9,]$countries)
 
 ######################
@@ -367,30 +367,20 @@ top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_lea
 plot_countries = ggplot(data = part_enrol_all[1:100,], aes(x=reorder(country, -value), y= value, fill = status , group = status, color = status)) + 
   geom_line(size =1) +
   geom_point(size = 2) + 
-  xlab("countries")
+  xlab("countries") +
   ylab("Normalized number of enrolments") +
-  theme(axis.text.x = element_text(angle = 45, hjust =1))+
-    scale_fill_brewer(palette = "Pastel1") 
+  theme(axis.text.x = element_text(angle = 45, hjust =1))
 
 
 ###### saving the plots for learners from different countries
 country_layout = rbind(c(2,2),c(1,1))
 countrywise_enrolments = grid.arrange(plot_countries,top9_countries , layout_matrix = country_layout )
 
-png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png",width = 1920, height = 1080)
+png(file="./graphs/countrywise_enrolments.png",width = 1920, height = 1080)
 grid.arrange(plot_countries,top9_countries , layout_matrix = country_layout )
 dev.off()
 
-###################
-#####################_____creating a wordcloud for sentiment analysis_________________________####################
 
-
-
-
-
-#png(file="C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/Weekly_Sentiment_analysis.png",width = 1920, height = 1080)
-#grid.arrange(wordcloud_weekly_sentiment)
-#dev.off() 
 
 
 ###################______________________________________________############################
@@ -400,11 +390,14 @@ dev.off()
 #######___________________################
 
 
-leaving_reason_plot = ggplot(data = all_leaving_survey, aes(leaving_reason, fill = leaving_reason)) + 
-           geom_bar()+
-           coord_polar()+
-  theme(text = element_text(size = 12))+
-  scale_fill_brewer(palette = "Pastel1")
+leaving_reason_plot = ggplot(data = leaving_reason_count, aes(x = leaving_reasons, y = count, fill = leaving_reasons)) + 
+           geom_bar(stat = "identity")+
+          coord_polar()+
+           xlab("")+
+           ylab("")+
+  labs("Leaving Reason") +
+  scale_fill_brewer(palette = "Set3")
+           theme(text = element_text(size = 15))
            
 
 
@@ -421,7 +414,7 @@ video_stats_views_plot = ggplot(data = all_views, aes(x=title,y= value, fill = v
   geom_point(size = 2) + 
   ylab("Video stats") +
   theme(axis.text.x = element_text(angle = 45, hjust =1))+
-  scale_fill_brewer(palette = "Pastel1") 
+  scale_fill_brewer(palette = "Set3") 
 
 png(file="./graphs/video_stats_views_plot.png",width = 1920, height = 1080)
 grid.arrange(video_stats_views_plot)
@@ -438,7 +431,7 @@ devices_used_plot1 = ggplot(data = all_devices_df, aes(x=row.names(all_devices_d
   xlab("Devices used") + 
   ylab("% of learners using the device") +
   theme(axis.text.x = element_text(angle = 45, hjust =1)) +
-  scale_fill_brewer(palette = "Pastel1") 
+  scale_fill_brewer(palette = "Spectral") 
 
 
 png(file="./graphs/devices_used_plot1.png",width = 1920, height = 1080)
@@ -455,7 +448,7 @@ continent_plot = ggplot(data = all_continents_df, aes(x=row.names(all_continents
   xlab("continents")+
   ylab("% of learners from each continents")+
   theme(axis.text.x = element_text(angle = 45, hjust =1)) +
-  scale_fill_brewer(palette = "Pastel1") 
+  scale_fill_brewer(palette = "Set3") 
 
 
 png(file="./graphs/continent_plot.png",width = 1920, height = 1080)

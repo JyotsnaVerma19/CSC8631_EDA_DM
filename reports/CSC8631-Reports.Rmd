@@ -70,6 +70,8 @@ So, we have done our analysis and visualizations on the data that is provided to
 
 Here for this analysis, we are using the enrolments dataset and the archetype dataset from all the seven batches to see what kind of learners are interested in the course and how well these insights can be used to achieve our goal. We have used the leaving response survey data set from all the seven batches to analyze what is the most common reason for people leaving the course. 
 
+We will also be analyzing the total view, transcript views, captions and HD viewing. 
+
 
 **Data Preparation: ** 
 
@@ -82,6 +84,8 @@ Here in these datasets, we can see that the data is not very consistent and we h
 
 Again, in the enrolment's dataset, we have country columns and the detected country columns, there are a lot of missing values in the country column, so we have carried out our analysis on the basis of detected country column. Moreover in the same dataset we have roles defined as Learners and Organisational admin. We have done our analysis for all the learners (the organisation admin entries were excluded when we excluded the unknown values from different variables)
 
+For analyzing the views from video stats dataset,We are using the data from merged video_stats. We summarized the columns containing total views, total caption views, total transcript views and viewed_HD. Then we used melt function to organize the data. (Here all the data from those 4 columns were stacked into a single column). Then this data frame was used for our analysis.
+
 **Evaluation/ Data Analysis:**  
 
 Here we are checking the trend of the learners who enroll in the course and the ones who fully participated in the course. 
@@ -89,7 +93,7 @@ Here we are checking the trend of the learners who enroll in the course and the 
 Fig 1.  this gives the trend of all the learners from all the 7 batches who enrolled for the course as well as who completed the course. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.width = 9, fig.height = 4, fig.cap="Trend of learners who enrolled vs who completed across all batches"}
+```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled vs who completed across all batches"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
 plot(enrol_vs_comp_plot)
 ```
@@ -100,7 +104,7 @@ Here we can see highest number of learners enrolling in the first batch and then
 Fig 2. gives a visual analysis of the leaving response by the learners. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.width = 21, fig.height=9, fig.cap="Leaving response of the learners"}
+```{r, echo = FALSE,out.width="100%", fig.height=4, fig.width=9, fig.cap="Leaving response of the learners"}
 # knitr::include_graphics("../graphs/leaving_reason_plot.png")
 plot(leaving_reason_plot)
 ```
@@ -142,7 +146,7 @@ Talking about the gender we can’t say it is a very significant factor in analy
 For this analysis we are using our merged data from enrolment and archetype dataset.Although we don't have archetype for batch 1 and batch 2, but here we are joining(left join) all the available data that we have and then producing a broad overview of our analysis.
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Archetype of the learners enrolled"}
+```{r, echo = FALSE,out.width="100%",fig.cap="Archetype of the learners enrolled"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/archetype_enrolled_Vs_completed.png")
 plot(arche_plot)
 ```
@@ -194,7 +198,7 @@ Now we will check the countries from where most of the learners enrolled for the
 Here for this analysis the count of each country was stored in a column. Now to compare the enrolments and the fully participated learners from each country, the data was normalized because number of learners enrolled were significantly more than the number of learners who fully participated in the course. So to plot on similar axis, noalization was needed.
 
 
-```{r, echo = FALSE,out.width="100%", fig.height=9, fig.width=16, fig.cap="Learners from the countries across the world"}
+```{r, echo = FALSE,out.width="100%",  fig.height=9, fig.width=16, fig.cap="Learners from the countries across the world"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/countrywise_enrolments.png")
 plot(countrywise_enrolments)
 ```
@@ -206,6 +210,32 @@ Here for example we see, Great Britain has the highest number of enrolments foll
 Here for concentrating on capturing more learners , we analyse which part of the world attracts most of the learners and we will try to strengthen the customer base in those areas more, plus try on tailoring the course for the area from where the response is not satisfactory to draw learners from those areas as well.
 
 Fig 7 shows the enrolments from top 9 countries. We also observe that the top 12 countries constitute the maximum number of learners and the trend of fully participation in the course is kind of the same. So, we will try aiming the learners from those countries so that we don't loose our customer base. 
+
+
+Now, here we will evaluate the views and captions of the video content for further analysis.
+
+```{r, echo = FALSE,out.width="100%",  fig.height=9, fig.width=16, fig.cap="Analysis of total views,HD views,captions & Transcript for video contents"}
+# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/video_stats_views_plot.png")
+plot(video_stats_views_plot)
+```
+
+Fig 8 shows the trend of total views, how many people watched the video with captions, who accessed the transcript and who watched the video in HD mode. 
+
+We observe that the total views of the videos for every title differ a lot. This shows that a lot of learners are interested in some particular topic. Here we can see some video titles(steps) are viewed the more than the others. One of the most watched video is the introductory video.
+The second most watched video is 'Privacy Online and Offline' – Learners are highly watching this video chapter because they might find it important and interesting. Here from the agenda of the course and from our analysis above, we have inferred that there is a possibility that people are enrolling in this course to get an idea and understanding of importance of cyber security in daily life. So, to avoid themselves from being a victim of the cyber fraud they might have shown interest in this topic. 
+
+The third most watched video is “Why would anyone want your data " - The choice of most watched videos gives us an idea that learners want to be aware of the data privacy issues and how they can safely use and share their private data. 
+
+So, we can look for adding modules with similar content (detailed content on the same kind of topic), which helps people with knowledge of cyber security in day to day lives. This can help to draw attention of the learners and will expand the customer base. 
+
+Now, if we see the trend of the HD viewing of the video content by the learners, we can see that it shows a spike for a particular video chapter.
+There can be few possibilities for this which needs to be analyzed. There can be a chance that it might contain some important pictorial information or graphs or something that needs to be evaluated critically and so learners tend to watch it in HD. Or maybe there is a chance that the video is not clear and thus learners turn on the HD view to get a better visual. If that is the case, then immediate action should be taken to handle this to maintain the quality of the course. 
+
+ 
+Again, we see that captions are provided for all the videos but very few learners have turned on the captions. That can mean that the audio and the contents of the lectures are projected to the audience very effectively. This means that our analysis from the sentiment response feedback holds true because there we saw that most of the comments are positive for the course. 
+
+But the presence of captions and transcript makes the course very versatile as it is particularly very beneficial from learners watching the video in their non native language. This can attract the learners from a very vast base. 
+
 
 ---
 

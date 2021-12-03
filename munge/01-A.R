@@ -611,6 +611,10 @@ set.seed(1234) # for reproducibility
 left_at_step = data.frame(t(data.frame(table(all_leaving_survey$last_completed_step))))
 left_at_step = left_at_step %>%
   row_to_names(row_number = 1)
+## Creating a dataframe for count of leaving reasons
+
+leaving_reason_count = (data.frame(table(all_leaving_survey$leaving_reason)))
+colnames(leaving_reason_count) = c("leaving_reasons", "count")
 
 
 ## ANlaysing the video stats dataset
