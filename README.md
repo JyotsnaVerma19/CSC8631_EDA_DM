@@ -19,6 +19,7 @@ learning experience
 
 ## Step of Execution
 1. Download the project by clicking [this link](https://github.com/JyotsnaVerma19/CSC8631_EDA_DM) and place all the data files in ./data/ directory or  unzip the project folder attached.
+* If downloading from Git, make data and cache directory in the peoject folder.
 2. Open RStudio
 3. Set working directory by using the command setwd("path/where/you/downloaded/the/project/file") or you can simply click on sessions tab present in the top menu bar then go to set working directory then choose directory (Session > Set Working Directory > Choose directory).
 Open ./reports/Reports.rmd and run all the chunks by clicking on Run > Run All button in Rstudio.
@@ -26,3 +27,6 @@ To generate the pdf report click on knit or knit to pdf.
 
 ## Accessing Critical reflection Report
 Go to ./reports/ folder and find the Critical_Reflection_Report.pdf
+
+## Note : 
+This project runs fine on Windows operating system. (Haven't checked on other OS)

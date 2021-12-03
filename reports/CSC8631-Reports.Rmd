@@ -93,7 +93,7 @@ Here we are checking the trend of the learners who enroll in the course and the 
 Fig 1.  this gives the trend of all the learners from all the 7 batches who enrolled for the course as well as who completed the course. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled vs who completed across all batches"}
+```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled and who fully participated across all batches"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
 plot(enrol_vs_comp_plot)
 ```
@@ -104,7 +104,7 @@ Here we can see highest number of learners enrolling in the first batch and then
 Fig 2. gives a visual analysis of the leaving response by the learners. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.height=4, fig.width=9, fig.cap="Leaving response of the learners"}
+```{r, echo = FALSE,out.width="100%", fig.height=7, fig.width=19, fig.cap="Leaving response of the learners"}
 # knitr::include_graphics("../graphs/leaving_reason_plot.png")
 plot(leaving_reason_plot)
 ```
@@ -118,7 +118,7 @@ For this we will be using our merged enrolments dataset from all the seven batch
 
 
 
-```{r, echo = FALSE,out.width="100%", fig.height = 14, fig.width = 20, fig.cap="Enrolled and fully participated over different variables"}
+```{r, echo = FALSE,out.width="100%", fig.height = 15, fig.width = 20, fig.cap="Enrolled and fully participated over different variables"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png")
 plot(completed_vs_enrolled)
 ```
@@ -195,7 +195,7 @@ Here we observe that view percentage from all the continents rank in the order f
 
 Now we will check the countries from where most of the learners enrolled for the course from the all_enrolments dataset (here as discussed earlier we will consider the detected country column)
 
-Here for this analysis the count of each country was stored in a column. Now to compare the enrolments and the fully participated learners from each country, the data was normalized because number of learners enrolled were significantly more than the number of learners who fully participated in the course. So to plot on similar axis, noalization was needed.
+Here for this analysis the count of each country was stored in a column. Now to compare the enrolments and the fully participated learners from each country, the data was normalized because number of learners enrolled were significantly more than the number of learners who fully participated in the course. So to plot on similar axis, normalization was needed.
 
 
 ```{r, echo = FALSE,out.width="100%",  fig.height=9, fig.width=16, fig.cap="Learners from the countries across the world"}
@@ -214,8 +214,8 @@ Fig 7 shows the enrolments from top 9 countries. We also observe that the top 12
 
 Now, here we will evaluate the views and captions of the video content for further analysis.
 
-```{r, echo = FALSE,out.width="100%",  fig.height=9, fig.width=16, fig.cap="Analysis of total views,HD views,captions & Transcript for video contents"}
-# knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/video_stats_views_plot.png")
+```{r, echo = FALSE,out.width="100%",  fig.height=9, fig.width=16, fig.cap="Analysis of Views, cations, transcripts, and hd viewing"}
+# knitr::include_graphics("./graphs/video_stats_views_plot.png")
 plot(video_stats_views_plot)
 ```
 
@@ -231,7 +231,6 @@ So, we can look for adding modules with similar content (detailed content on the
 Now, if we see the trend of the HD viewing of the video content by the learners, we can see that it shows a spike for a particular video chapter.
 There can be few possibilities for this which needs to be analyzed. There can be a chance that it might contain some important pictorial information or graphs or something that needs to be evaluated critically and so learners tend to watch it in HD. Or maybe there is a chance that the video is not clear and thus learners turn on the HD view to get a better visual. If that is the case, then immediate action should be taken to handle this to maintain the quality of the course. 
 
- 
 Again, we see that captions are provided for all the videos but very few learners have turned on the captions. That can mean that the audio and the contents of the lectures are projected to the audience very effectively. This means that our analysis from the sentiment response feedback holds true because there we saw that most of the comments are positive for the course. 
 
 But the presence of captions and transcript makes the course very versatile as it is particularly very beneficial from learners watching the video in their non native language. This can attract the learners from a very vast base. 
@@ -276,9 +275,15 @@ Here we see that most of the learners prefer watching the content on desktop tha
 Here we can see , almost no one use the console (very negligible amount) or TV device to access the course. But keeping in mind that the data is from 3 years ago, and now a days a lot of people use smart TV , so keeping the future scope in mind, the company can focus on making the UI of TV device user friendly too. 
 
 
-## Final Recommendations and Conclusion :
+## Conclusion :
 
 We observe that most of the details about the learners enrolled are unknown. There is a possibility that learners don't provide their details because of some privacy issues or lack of knowledge about how their data will be used. Here the course provider should put in place the clear ethical policies and code of practices about how the student data will be used in analytics. These policies should address student privacy, security of data and the consent.
-We can focus on students from a particular background...so and so..provide a gist of conclusion from both recommendations
+From the evaluation and analysis of datasets, we have inferred that most of the learners are from IT and Information Services background and are in the age range of 26-35 years, but their rate of full participation(that is upgrading to the purchase certification) is low. Comparatively, the learners in the age range of 65 years or above, those who belong to the retired category tend to fully participate in the course although their enrolment rate is less.We also observed that most of the learners enrolled are from Europe,Asia and North America, especially we can see a significant number of learners from Great Britain, India and the US. So, we can say that a huge influx of learners are from these categories.  
+Here we must focus on retaining our loyal customers(the learners) as well as explore ways to attract learners from varied background and categories. Simultaneously, we must work for the improvement and enhancement of the course and figure out the shortcomings and work proactively on them to maintain the quality of the program offered.
 
-
+## Refrences :
+- https://www.linkedin.com/pulse/managing-data-science-project-aleksey-zavgorodniy/
+- https://www.policyconnect.org.uk/research/report-bricks-clicks-potential-data-and-analytics-higher-education
+- https://www.classcentral.com/report/what-kind-of-online-learner-are-you/
+- https://towardsdatascience.com/create-a-word-cloud-with-r-bde3e7422e8a
+- 

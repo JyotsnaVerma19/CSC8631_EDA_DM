@@ -283,7 +283,7 @@ arche_plot = ggplot() +
   geom_line(data = arche_participants, mapping = aes(archetype,  color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = arche_participants, mapping = aes(archetype, color = "fully participated") , stat = "count", group = 1, size = 3) +
   theme(legend.key=element_blank(),
-        legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1)) +
+        legend.box="vertical", text = element_text(size = 12), axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_colour_manual(" ", values=c("fully participated" = "black")) +
   ylab("No. of learners")
 
@@ -292,14 +292,16 @@ grid.arrange(arche_plot)
 dev.off()
   
 
-########################################################__________________________#############################################3
+#####################################################################################################
+# Plotting for different characteristics as gender, age range, highest education level, employment area and employment status from the merged enrolment dataset
 
 test_plot1 = ggplot() + 
   geom_bar(data = all_gender, mapping = aes(gender,fill=gender), stat = "count", group = 1) + 
   geom_line(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_gender_part, mapping = aes(gender, color = "fully participated") , stat = "count", group = 1, size = 3)+
-  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
-  scale_colour_manual(" ", values=c("fully participated" = "black"))
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 12))+
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
   #scale_fill_brewer(palette = "Pastel1")
   
 
@@ -307,34 +309,39 @@ test_plot2 = ggplot() +
   geom_bar(data = all_age_range, mapping = aes(age_range,fill=age_range), stat = "count", group = 1) + 
   geom_line(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_age_range_part, mapping = aes(age_range, color = "fully participated") , stat = "count", group = 1, size = 3)+
-  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) 
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 12))+
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
  #+ scale_fill_brewer(palette = "Pastel1")
 
 test_plot3 = ggplot() + 
   geom_bar(data = all_high_education_level, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", group = 1) + 
   geom_line(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_high_education_level_part, mapping = aes(highest_education_level, color = "fully participated") , stat = "count", group = 1, size = 3)+
-  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1))+
-  scale_colour_manual(" ", values=c("fully participated" = "black"))
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 12), axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
  # scale_fill_brewer(palette = "Pastel1")
 
 test_plot4 = ggplot() + 
   geom_bar(data = all_emp_status, mapping = aes(employment_status,fill=employment_status), stat = "count", group = 1) + 
   geom_line(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_emp_status_part, mapping = aes(employment_status, color = "fully participated") , stat = "count", group = 1, size = 3)+
-  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) 
-  #scale_fill_brewer(palette = "Pastel1")
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 12), axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
+  #scale_fill_brewer(palette = "Pastel1") +
 
-mycolors = c(brewer.pal(name="Pastel1", n = 9), brewer.pal(name="Pastel2", n = 8))
+
 test_plot5 = ggplot() + 
   geom_bar(data = all_emp_area, mapping = aes(employment_area,fill=employment_area), stat = "count", group = 1) +
   geom_line(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1 ,size = 1) +
   geom_point(data = all_emp_area_part, mapping = aes(employment_area, color = "fully participated") , stat = "count", group = 1, size = 3) +
-  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 15), axis.text.x = element_text(angle = 45, hjust = 1))+
-  scale_colour_manual(" ", values=c("fully participated" = "black")) 
+  theme(legend.key=element_blank(),legend.box="vertical", text = element_text(size = 12), axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_colour_manual(" ", values=c("fully participated" = "black")) +
+  ylab("No. of learners")
 
+# plotting all the characters
 
 lay = rbind(c(1,1),c(1,1),c(2,3),c(4,5))
 completed_vs_enrolled = grid.arrange(test_plot5, test_plot1,test_plot2,test_plot3,test_plot4, layout_matrix = lay)
@@ -344,7 +351,7 @@ png(file="./graphs/completed_vs_enrolled.png",width = 1920, height = 1080)
 grid.arrange(test_plot5, test_plot1,test_plot2,test_plot3,test_plot4, layout_matrix = lay)
 dev.off()
 
-######################___________________________________-######################################
+############################################################
 
 # Countrywise analysis
 
@@ -358,11 +365,11 @@ top9_countries = ggplot(countries_df_sorted[1:9,], aes(x = "", y = number_of_lea
   scale_fill_brewer(palette = "Set3") +
   coord_polar(theta = "y") +
   guides(fill = guide_legend(title = "countries")) +
-  theme(text= element_text(size = 20)) 
+  theme(text= element_text(size = 20)) +
+  xlab("")
     #scale_y_continuous(breaks = countries_df_sorted[1:9,]$number_of_learners, labels = countries_df_sorted[1:9,]$countries)
 
-######################
-#######
+############################# Plotting the no of enrolled learners and no. of fully participated learners based on country
 
 plot_countries = ggplot(data = part_enrol_all[1:100,], aes(x=reorder(country, -value), y= value, fill = status , group = status, color = status)) + 
   geom_line(size =1) +
@@ -383,11 +390,10 @@ dev.off()
 
 
 
-###################______________________________________________############################
+###############################################
 
-### ANalysing all the leaving responses
+### Analysing all the leaving responses
 
-#######___________________################
 
 
 leaving_reason_plot = ggplot(data = leaving_reason_count, aes(x = leaving_reasons, y = count, fill = leaving_reasons)) + 
@@ -397,7 +403,7 @@ leaving_reason_plot = ggplot(data = leaving_reason_count, aes(x = leaving_reason
            ylab("")+
   labs("Leaving Reason") +
   scale_fill_brewer(palette = "Set3")
-           theme(text = element_text(size = 15))
+           #theme(text = element_text(size = 20))
            
 
 
@@ -405,7 +411,7 @@ png(file="./graphs/leaving_reason_plot.png",width = 1920, height = 1080)
 grid.arrange(leaving_reason_plot)
 dev.off()
 
-###########___________________________ ########################
+###################################
 ## ANlaysing the video stats dataset
 
 
@@ -420,7 +426,7 @@ png(file="./graphs/video_stats_views_plot.png",width = 1920, height = 1080)
 grid.arrange(video_stats_views_plot)
 dev.off()
 
-###############__________________________________________--#########################################
+########################################################
 
 ###ANalysing the device  used.
 
@@ -430,15 +436,14 @@ devices_used_plot1 = ggplot(data = all_devices_df, aes(x=row.names(all_devices_d
   labs(fill = "Devices used") +
   xlab("Devices used") + 
   ylab("% of learners using the device") +
-  theme(axis.text.x = element_text(angle = 45, hjust =1)) +
-  scale_fill_brewer(palette = "Spectral") 
-
+  theme(axis.text.x = element_text(angle = 45, hjust =1), text = element_text(size = 20)) +
+  scale_fill_brewer(palette = "Set2") 
 
 png(file="./graphs/devices_used_plot1.png",width = 1920, height = 1080)
 grid.arrange(devices_used_plot1)
 dev.off()
 
-############___________#############
+#########################
 # Analysing the continents fro the number of learners
 
 
@@ -446,7 +451,7 @@ continent_plot = ggplot(data = all_continents_df, aes(x=row.names(all_continents
   geom_bar(position="dodge", stat="identity") +
   labs(fill = "Continents") +
   xlab("continents")+
-  ylab("% of learners from each continents")+
+  ylab("% learner views from each continents")+
   theme(axis.text.x = element_text(angle = 45, hjust =1)) +
   scale_fill_brewer(palette = "Set3") 
 

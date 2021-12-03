@@ -1,5 +1,7 @@
 # Example preprocessing script.
 
+
+# Loading the data for batch 1
 archetype_1 <- cyber.security.1_archetype.survey.responses
 enrolment_1 <- cyber.security.1_enrolments
 leaving_survey_1 <- cyber.security.1_leaving.survey.responses
@@ -7,6 +9,7 @@ question_response_1 <- cyber.security.1_question.response
 step_activity_1 <- cyber.security.1_step.activity
 weekly_sentiment_1 <- cyber.security.1_weekly.sentiment.survey.responses
 
+# Loading the data for batch 2
 archetype_2 <- cyber.security.2_archetype.survey.responses
 enrolment_2 <- cyber.security.2_enrolments
 leaving_survey_2 <- cyber.security.2_leaving.survey.responses
@@ -15,6 +18,7 @@ step_activity_2 <- cyber.security.2_step.activity
 team_members_2 <- cyber.security.2_team.members
 weekly_sentiment_2 <- cyber.security.2_weekly.sentiment.survey.responses
 
+# Loading the data for batch 3
 archetype_3 <- cyber.security.3_archetype.survey.responses
 enrolment_3 <- cyber.security.3_enrolments
 leaving_survey_3 <- cyber.security.3_leaving.survey.responses
@@ -24,6 +28,7 @@ team_members_3 <- cyber.security.3_team.members
 video_stats_3 <- cyber.security.3_video.stats
 weekly_sentiment_3 <- cyber.security.3_weekly.sentiment.survey.responses
 
+# Loading the data for batch 4
 archetype_4 <- cyber.security.4_archetype.survey.responses
 enrolment_4 <- cyber.security.4_enrolments
 leaving_survey_4 <- cyber.security.4_leaving.survey.responses
@@ -33,6 +38,7 @@ team_members_4 <- cyber.security.4_team.members
 video_stats_4 <- cyber.security.4_video.stats
 weekly_sentiment_4 <- cyber.security.4_weekly.sentiment.survey.responses
 
+# Loading the data for batch 5
 archetype_5 <- cyber.security.5_archetype.survey.responses
 enrolment_5 <- cyber.security.5_enrolments
 leaving_survey_5 <- cyber.security.5_leaving.survey.responses
@@ -42,6 +48,7 @@ team_members_5 <- cyber.security.5_team.members
 video_stats_5 <- cyber.security.5_video.stats
 weekly_sentiment_5 <- cyber.security.5_weekly.sentiment.survey.responses
 
+# Loading the data for batch 6
 archetype_6 <- cyber.security.6_archetype.survey.responses
 enrolment_6 <- cyber.security.6_enrolments
 leaving_survey_6 <- cyber.security.6_leaving.survey.responses
@@ -51,6 +58,7 @@ team_members_6 <- cyber.security.6_team.members
 video_stats_6 <- cyber.security.6_video.stats
 weekly_sentiment_6 <- cyber.security.6_weekly.sentiment.survey.responses
 
+# Loading the data for batch 7
 archetype_7 <- cyber.security.7_archetype.survey.responses
 enrolment_7 <- cyber.security.7_enrolments
 leaving_survey_7 <- cyber.security.7_leaving.survey.responses
@@ -61,7 +69,7 @@ video_stats_7 <- cyber.security.7_video.stats
 weekly_sentiment_7 <- cyber.security.7_weekly.sentiment.survey.responses
 
 
-#
+
 # Merging data of all batches for arhetype
 all_archetype = rbind(archetype_1,archetype_2,archetype_3,archetype_4,archetype_5,archetype_6,archetype_7)
 
@@ -84,7 +92,7 @@ arche_enrol_all <- merge(x= all_enrolments ,y=all_archetype[,c(2,4)], by = "lear
 
 
 
-
+# creating data frame of gender variable from the enrolment dataset for all the 7 batches
 
 
 gender1 = data.frame(enrolment_1$gender[enrolment_1$gender != "Unknown"])
@@ -102,6 +110,7 @@ colnames(gender6) = "gender"
 gender7 = data.frame(enrolment_7$gender[enrolment_7$gender != "Unknown"])
 colnames(gender7) = "gender"
 
+# creating a gender category table for all the batches
 gender_count1 = data.frame(t(data.frame(table(gender1))))
 colnames(gender_count1) =  c("female", "male", "nonbinary", "other")
 gender_count1 = gender_count1[!(row.names(gender_count1) %in% c('gender1')),]
@@ -176,6 +185,7 @@ Batch7    115   98         0     1", header = T)
 
 
 
+# creating data frame of highest education level variable from the enrolment dataset for all the 7 batches
 
 
 
@@ -215,8 +225,7 @@ fully_particiapted_df1 = enrolment_1[idx_fully_participated1,]
 high_edu_lvl1 = data.frame(fully_particiapted_df1$highest_education_level[fully_particiapted_df1$highest_education_level != "Unknown"])
 colnames(high_edu_lvl1) = "highest_education_level"
 
-#ggplot() +
-# geom_bar(high_edu_lvl1, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge()) 
+
 
 # for second batch
 idx_fully_participated2 = which(enrolment_2$fully_participated_at != "")
@@ -227,8 +236,7 @@ fully_particiapted_df2 = enrolment_2[idx_fully_participated2,]
 high_edu_lvl2 = data.frame(fully_particiapted_df2$highest_education_level[fully_particiapted_df2$highest_education_level != "Unknown"])
 colnames(high_edu_lvl2) = "highest_education_level"
 
-#ggplot() +
-# geom_bar(high_edu_lvl2, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
+
 
 # for third batch
 idx_fully_participated3 = which(enrolment_3$fully_participated_at != "")
@@ -239,8 +247,6 @@ fully_particiapted_df3 = enrolment_3[idx_fully_participated3,]
 high_edu_lvl3 = data.frame(fully_particiapted_df3$highest_education_level[fully_particiapted_df3$highest_education_level != "Unknown"])
 colnames(high_edu_lvl3) = "highest_education_level"
 
-#ggplot() +
-# geom_bar(high_edu_lvl3, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 # for 4th batch
 
@@ -251,9 +257,6 @@ fully_particiapted_df4 = enrolment_4[idx_fully_participated4,]
 
 high_edu_lvl4 = data.frame(fully_particiapted_df4$highest_education_level[fully_particiapted_df4$highest_education_level != "Unknown"])
 colnames(high_edu_lvl4) = "highest_education_level"
-
-#ggplot() +
-# geom_bar(high_edu_lvl4, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
 # for 5th batch
@@ -266,8 +269,6 @@ fully_particiapted_df5 = enrolment_5[idx_fully_participated5,]
 high_edu_lvl5 = data.frame(fully_particiapted_df5$highest_education_level[fully_particiapted_df5$highest_education_level != "Unknown"])
 colnames(high_edu_lvl5) = "highest_education_level"
 
-#ggplot() +
-# geom_bar(high_edu_lvl5, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
 # for 6th batch
@@ -280,8 +281,6 @@ fully_particiapted_df6 = enrolment_6[idx_fully_participated6,]
 high_edu_lvl6 = data.frame(fully_particiapted_df6$highest_education_level[fully_particiapted_df6$highest_education_level != "Unknown"])
 colnames(high_edu_lvl6) = "highest_education_level"
 
-#ggplot() +
-# geom_bar(high_edu_lvl6, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 # for seventh batch
 
@@ -292,9 +291,6 @@ fully_particiapted_df7 = enrolment_7[idx_fully_participated7,]
 
 high_edu_lvl7 = data.frame(fully_particiapted_df7$highest_education_level[fully_particiapted_df7$highest_education_level != "Unknown"])
 colnames(high_edu_lvl7) = "highest_education_level"
-
-#ggplot() +
-# geom_bar(high_edu_lvl7, mapping = aes(highest_education_level,fill=highest_education_level), stat = "count", position = position_dodge())
 
 
 # checking the employment status from all batches
@@ -485,7 +481,6 @@ colnames(all_emp_area) = "employment_area"
 
 
 
-
 idx_enrol_fully_participated = which(all_enrolments$fully_participated_at != "")
 all_enrol_particiapted = all_enrolments[idx_enrol_fully_participated,]
 
@@ -606,11 +601,12 @@ set.seed(1234) # for reproducibility
 
 
 
-### ANalysing all the leaving responses
-
+### Analysing all the leaving responses
+# checking at which step learners left the course
 left_at_step = data.frame(t(data.frame(table(all_leaving_survey$last_completed_step))))
 left_at_step = left_at_step %>%
   row_to_names(row_number = 1)
+
 ## Creating a dataframe for count of leaving reasons
 
 leaving_reason_count = (data.frame(table(all_leaving_survey$leaving_reason)))
