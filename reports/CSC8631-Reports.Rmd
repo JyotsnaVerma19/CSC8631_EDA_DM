@@ -1,5 +1,5 @@
 ---
-title: "Data Management_EDA_CSC8631_Report"
+title: "Exploratory Data Analysis"
 author: "Jyotsna Verma"
 date: "12/11/2021"
 output: pdf_document
@@ -89,7 +89,7 @@ Here we are checking the trend of the learners who enroll in the course and the 
 Fig 1.  this gives the trend of all the learners from all the 7 batches who enrolled for the course as well as who completed the course. 
 
 
-```{r, echo = FALSE,out.width="100%", fig.cap="Trend of learners who enrolled vs who completed across all batches"}
+```{r, echo = FALSE,out.width="100%", fig.width = 9, fig.height = 4, fig.cap="Trend of learners who enrolled vs who completed across all batches"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/enrol_vs_comp_plot.png")
 plot(enrol_vs_comp_plot)
 ```
@@ -114,7 +114,7 @@ For this we will be using our merged enrolments dataset from all the seven batch
 
 
 
-```{r, echo = FALSE,out.width="100%", fig.height = 9, fig.width = 16, fig.cap="Enrolled and fully participated over different variables"}
+```{r, echo = FALSE,out.width="100%", fig.height = 14, fig.width = 20, fig.cap="Enrolled and fully participated over different variables"}
 # knitr::include_graphics("C:/Users/Payal/Desktop/Future_Learn_EDA_DM/graphs/completed_vs_enrolled.png")
 plot(completed_vs_enrolled)
 ```
@@ -170,16 +170,6 @@ The exploratory textual analysis of the weekly sentiment's dataset is done by wo
 #knitr::include_graphics("../graphs/weeklysentiment_analysis.png")
 wordcloud(words = df$word, freq = df$freq, min.freq = 1, max.words=200, random.order=FALSE, rot.per=0.35, colors=brewer.pal(8, "Dark2") )
 ```
-
-#```{r wordcloud, echo = FALSE, out.width="100%", fig.height=5, fig.width=5 ,fig.cap="Weekly feedback about the course", warning=FALSE}
-#weeklysentiment_analysis <- wordcloud2(data=df ,size=1.6, color='random-dark')
-#saveWidget(weeklysentiment_analysis, "tmp.html", selfcontained = F)
-#webshot("tmp.html", "weeklysentiment_analysis.png", delay = 10, vwidth = 2000, vheight = 2000)
-#knitr::include_graphics("../graphs/weeklysentiment_analysis.png")
-
-#```
-![wordcloud](weeklysentiment_analysis.png)
-
 
 
 

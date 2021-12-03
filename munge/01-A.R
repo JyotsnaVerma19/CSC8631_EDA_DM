@@ -489,20 +489,27 @@ colnames(all_emp_area) = "employment_area"
 idx_enrol_fully_participated = which(all_enrolments$fully_participated_at != "")
 all_enrol_particiapted = all_enrolments[idx_enrol_fully_participated,]
 
+# Plotting learners based on different variables who fully participated in the course
+# Gender of the learners for all the batches 
 all_gender_part = data.frame(all_enrol_particiapted$gender[all_enrol_particiapted$gender != "Unknown"])
 colnames(all_gender_part) = "gender"
 
+# age range of the learners for all the batches
 all_age_range_part = data.frame(all_enrol_particiapted$age_range[all_enrol_particiapted$age_range != "Unknown"])
 colnames(all_age_range_part) = "age_range"
 
+#  highest education level of the learners for all the batches
 all_high_education_level_part = data.frame(all_enrol_particiapted$highest_education_level[all_enrol_particiapted$highest_education_level != "Unknown"])
 colnames(all_high_education_level_part) = "highest_education_level"
 
+# employment status of the learners for all the batches
 all_emp_status_part = data.frame(all_enrol_particiapted$employment_status[all_enrol_particiapted$employment_status != "Unknown"])
 colnames(all_emp_status_part) = "employment_status"
 
+# employment area of the learners for all the batches
 all_emp_area_part = data.frame(all_enrol_particiapted$employment_area[all_enrol_particiapted$employment_area != "Unknown"])
 colnames(all_emp_area_part) = "employment_area"
+
 
 idx_all_fully_participated = which(arche_enrol_all$fully_participated_at != "")
 idx_all_fully_participated
@@ -574,12 +581,39 @@ df <- df[-c(116,117,196),]
 
 
 
+# STEP 4: Generate the word cloud
+set.seed(1234) # for reproducibility 
+#word_cloud_plot = wordcloud(words = df$word, freq = df$freq, min.freq = 1,max.words=200, random.order=FALSE, rot.per=0.35,colors=brewer.pal(8, "Dark2"))
+
+
+
+
+
+# weeklysentiment_analysis <- wordcloud2(data=df ,size=1.6, color='random-dark')
+
+# install webshot
+
+# webshot::install_phantomjs(force = TRUE)
+
+
+# save it in html
+
+# saveWidget(weeklysentiment_analysis,"tmp.html", selfcontained = F)
+
+# and in png or pdf
+# webshot("tmp.html","./graphs/weeklysentiment_analysis.png", delay = 15, vwidth = 1920, vheight=1080)
+
+
+
+
+### ANalysing all the leaving responses
+
 left_at_step = data.frame(t(data.frame(table(all_leaving_survey$last_completed_step))))
 left_at_step = left_at_step %>%
   row_to_names(row_number = 1)
 
 
-
+## ANlaysing the video stats dataset
 
 
 all_views = all_video_stats %>% group_by(title) %>% summarize(views = sum(total_views))
@@ -590,6 +624,7 @@ all_views$hd_viewing = (all_video_stats %>% group_by(title) %>% summarize(hd_vie
 all_views = melt(all_views, id.vars = c('title'))
 colnames(all_views)[2] = c("video_stats")
 
+###ANalysing the device  used.
 
 
 all_devices = all_video_stats %>% group_by(title) %>% summarize(console_devices = mean(console_device_percentage))
@@ -601,9 +636,9 @@ all_devices$tablet_devices = (all_video_stats %>% group_by(title) %>% summarize(
 all_devices_df <- as.data.frame(colMeans(all_devices[,2:ncol(all_devices)]))
 colnames(all_devices_df)[1] = c("devices_used")
 
+# Analysing the continents fro the number of learners
 
-
-
+# calculating mean of continent view percentage by grouping over video titles
 all_continents = all_video_stats %>% group_by(title) %>% summarize(europe_views = mean(europe_views_percentage))
 all_continents$oceania_views = (all_video_stats %>% group_by(title) %>% summarize(oceania_views = mean(oceania_views_percentage)))$oceania_views
 all_continents$asia_views = (all_video_stats %>% group_by(title) %>% summarize(asia_views = mean(asia_views_percentage)))$asia_views
